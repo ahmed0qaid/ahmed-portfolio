@@ -15,7 +15,7 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
   const isCompact = layoutVariant === "compact";
 
   return (
-    <section id="assistant" className={isCompact ? "py-12" : "py-20"}>
+    <section id="assistant" className={isCompact ? "py-9 sm:py-10 lg:py-12" : "py-10 sm:py-12 lg:py-16"}>
       <div className="container-shell grid gap-5 sm:gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-8">
         <div>
           <SectionHeader
@@ -26,7 +26,7 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
             titleEn={english.title}
             subtitleEn={english.subtitle}
           />
-          <div className="mt-6 flex gap-3 sm:mt-7 lg:mt-8">
+          <div className="mt-5 flex gap-3 sm:mt-6 lg:mt-7">
             <a href="#chat" className="btn-primary">
               <LocalizedText ar={ai.primaryCta} en={english.primaryCta} />
             </a>
@@ -44,7 +44,7 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
               className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-cyanBrand/[0.055] blur-3xl"
             />
 
-            <div className="relative flex items-center gap-3.5 border-b border-white/[0.065] pb-4">
+            <div className="relative flex items-center gap-3.5 border-b border-white/[0.065] pb-3.5 sm:pb-4">
               <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-cyanBrand/20 bg-cyanBrand/10 text-cyanBrand shadow-[0_8px_24px_rgba(0,0,0,0.16)] sm:h-12 sm:w-12 sm:rounded-[1.1rem]">
                 <Bot className="h-5 w-5 sm:h-6 sm:w-6" />
               </div>
@@ -58,11 +58,11 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
               </div>
             </div>
 
-            <div className="relative mt-4 space-y-2.5">
+            <div className="relative mt-3.5 space-y-2 sm:mt-4 sm:space-y-2.5">
               {ai.processSteps.map((step, index) => (
                 <div
                   key={`${step}-${index}`}
-                  className="group relative flex items-start gap-3 overflow-hidden rounded-xl border border-white/[0.075] bg-white/[0.026] px-3.5 py-3 text-start shadow-[inset_0_1px_0_rgba(255,255,255,0.025)] transition duration-300 hover:-translate-y-0.5 hover:border-cyanBrand/20 hover:bg-white/[0.045] sm:px-4 sm:py-3.5"
+                  className="group relative flex items-start gap-3 overflow-hidden rounded-xl border border-white/[0.075] bg-white/[0.026] px-3.5 py-2.5 text-start shadow-[inset_0_1px_0_rgba(255,255,255,0.025)] transition duration-300 hover:-translate-y-0.5 hover:border-cyanBrand/20 hover:bg-white/[0.045] sm:px-4 sm:py-3.5"
                 >
                   <div
                     aria-hidden="true"
