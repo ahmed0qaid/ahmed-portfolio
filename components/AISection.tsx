@@ -33,7 +33,7 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
           </div>
         </div>
 
-        <div className="mx-auto w-full max-w-[620px] lg:max-w-none">
+        <div className="ms-auto w-[88%] max-w-[560px] sm:mx-auto sm:w-[94%] md:w-[90%] lg:mx-0 lg:w-full lg:max-w-none">
           <div className="github-panel relative overflow-hidden rounded-[1.75rem] p-4 sm:p-5 lg:p-6">
             <div
               aria-hidden="true"
