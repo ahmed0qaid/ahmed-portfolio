@@ -90,10 +90,10 @@ function ContactCard({ content, contentEn, item }: { content: SiteContent; conte
   const Icon = iconMap[item.icon] || LinkIcon;
   const resolved = contactItemDefaults(content, contentEn, item);
   const cardClass = item.highlighted
-    ? "whatsapp-link rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-emerald-50 transition hover:border-emerald-300/50"
-    : "repo-card rounded-2xl p-4 transition hover:border-cyanBrand/40";
+    ? "whatsapp-link rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-3.5 text-emerald-50 transition hover:border-emerald-300/50 sm:p-4"
+    : "repo-card rounded-2xl p-3.5 transition hover:border-cyanBrand/40 sm:p-4";
   const iconClass = item.highlighted ? "h-5 w-5 text-emerald-300" : "h-5 w-5 text-cyanBrand";
-  const labelClass = item.highlighted ? "mt-3 text-sm text-emerald-200" : "mt-3 text-sm text-slate-400";
+  const labelClass = item.highlighted ? "mt-2.5 text-sm text-emerald-200" : "mt-2.5 text-sm text-slate-400";
 
   const contentNode = (
     <>
@@ -121,8 +121,8 @@ export function Contact({ content, contentEn, layoutVariant }: ContactProps) {
   const visibleItems = contact.items.filter((item) => item.enabled);
 
   return (
-    <section id="contact" className={isCompact ? "py-12" : "py-20"}>
-      <div className="container-shell grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
+    <section id="contact" className={isCompact ? "py-9 sm:py-10 lg:py-12" : "py-10 sm:py-12 lg:py-16"}>
+      <div className="container-shell grid gap-5 sm:gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
         <SectionHeader
           kicker={contact.kicker}
           title={contact.title}
@@ -133,8 +133,8 @@ export function Contact({ content, contentEn, layoutVariant }: ContactProps) {
         />
 
         <div className="mx-auto w-[90%] max-w-[600px] sm:w-[92%] md:w-[88%] lg:mx-0 lg:w-full lg:max-w-none">
-          <div className="github-panel rounded-[1.75rem] p-4 sm:p-5 lg:p-6">
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+          <div className="github-panel rounded-[1.75rem] p-3.5 sm:p-5 lg:p-6">
+            <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-4 lg:gap-4">
               {visibleItems.map((item) => (
                 <ContactCard key={item.id} content={content} contentEn={contentEn} item={item} />
               ))}
