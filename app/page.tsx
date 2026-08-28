@@ -19,6 +19,30 @@ export default async function Home() {
   const settings = await getSiteSettings();
   const { content, contentEn, themeVariant, layoutVariant } = settings;
 
+  const challengeAr = {
+    name: "تحدي ICPC 2026 لهواوي — الجدولة التعاونية بين الحافة والسحابة",
+    status: "مشارك",
+    stack: ["C++17", "Algorithms", "Scheduling", "Optimization", "Edge/Cloud"],
+    description:
+      "شاركت في ICPC 2026 Online Challenge 1 powered by Huawei وطورت حلاً بلغة C++ للمسألة A: Edge–Cloud Collaborative Scheduling، مع تحسينات متتابعة شملت التجميع الديناميكي، تخصيص الموارد، موازنة زمن الاستجابة ومعدل الإنتاج، والجدولة المراعية لـ SLO.",
+  };
+
+  const challengeEn = {
+    name: "ICPC 2026 Huawei Challenge — Edge–Cloud Collaborative Scheduling",
+    status: "Participant",
+    stack: ["C++17", "Algorithms", "Scheduling", "Optimization", "Edge/Cloud"],
+    description:
+      "Participated in ICPC 2026 Online Challenge 1 powered by Huawei and developed an iterative C++ solution for Problem A: Edge–Cloud Collaborative Scheduling, exploring dynamic batching, resource allocation, latency/throughput trade-offs, SLO-aware scheduling, and model-predictive scheduling strategies.",
+  };
+
+  const projectsAr = content.projects.some((project) => project.name.includes("ICPC 2026"))
+    ? content.projects
+    : [...content.projects, challengeAr];
+
+  const projectsEn = contentEn.projects.some((project) => project.name.includes("ICPC 2026"))
+    ? contentEn.projects
+    : [...contentEn.projects, challengeEn];
+
   const portfolioContent = {
     ...content,
     profile: {
@@ -27,36 +51,26 @@ export default async function Home() {
       nameEn: "AHMED SHAWQI MOHAMMED QAID",
       logoText: "AQ",
     },
-    projects: [
-      ...content.projects,
-      {
-        name: "تحدي ICPC 2026 لهواوي — الجدولة التعاونية بين الحافة والسحابة",
-        status: "مشارك",
-        stack: ["C++17", "Algorithms", "Scheduling", "Optimization", "Edge/Cloud"],
-        description:
-          "شاركت في ICPC 2026 Online Challenge 1 powered by Huawei وطورت حلاً بلغة C++ للمسألة A: Edge–Cloud Collaborative Scheduling، مع تحسينات متتابعة شملت التجميع الديناميكي، تخصيص الموارد، موازنة زمن الاستجابة ومعدل الإنتاج، والجدولة المراعية لـ SLO.",
-      },
-    ],
+    projects: projectsAr,
+    footer: {
+      ...content.footer,
+      text: "© 2026 أحمد شوقي محمد قائد. معرض أعمال برمجي ونظام استقبال طلبات ذكي.",
+    },
   };
 
   const portfolioContentEn = {
     ...contentEn,
     profile: {
       ...contentEn.profile,
-      nameAr: "أحمد شوقي محمد قائد",
+      nameAr: "AHMED SHAWQI MOHAMMED QAID",
       nameEn: "AHMED SHAWQI MOHAMMED QAID",
       logoText: "AQ",
     },
-    projects: [
-      ...contentEn.projects,
-      {
-        name: "ICPC 2026 Huawei Challenge — Edge–Cloud Collaborative Scheduling",
-        status: "Participant",
-        stack: ["C++17", "Algorithms", "Scheduling", "Optimization", "Edge/Cloud"],
-        description:
-          "Participated in ICPC 2026 Online Challenge 1 powered by Huawei and developed an iterative C++ solution for Problem A: Edge–Cloud Collaborative Scheduling, exploring dynamic batching, resource allocation, latency/throughput trade-offs, SLO-aware scheduling, and model-predictive scheduling strategies.",
-      },
-    ],
+    projects: projectsEn,
+    footer: {
+      ...contentEn.footer,
+      text: "© 2026 AHMED SHAWQI MOHAMMED QAID. Software engineering portfolio and AI-assisted client intake system.",
+    },
   };
 
   return (
