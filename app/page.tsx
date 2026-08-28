@@ -66,6 +66,12 @@ export default async function Home() {
         { value: "95.76% | 3.83/4.00", label: "المعدل التراكمي | GPA" },
       ],
     },
+    projectsHeader: {
+      ...content.projectsHeader,
+      kicker: "المشاريع",
+      title: "مشاريع مختارة",
+      subtitle: "مشاريع مختارة توضح الفكرة، التقنيات المستخدمة، وطبيعة العمل التقني في كل مشروع.",
+    },
     projects: projectsAr,
     footer: {
       ...content.footer,
@@ -95,6 +101,12 @@ export default async function Home() {
         { value: "Backend + AI", label: "Primary Focus" },
         { value: "95.76% | 3.83/4.00", label: "Cumulative Average | GPA Equivalent" },
       ],
+    },
+    projectsHeader: {
+      ...contentEn.projectsHeader,
+      kicker: "Projects",
+      title: "Selected Projects",
+      subtitle: "Selected projects highlighting the idea, technologies used, and the technical work involved in each project.",
     },
     projects: projectsEn,
     footer: {
