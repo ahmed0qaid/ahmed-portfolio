@@ -63,7 +63,7 @@ export default async function Home() {
       stats: [
         { value: "IT", label: "تقنية معلومات" },
         { value: "Backend + AI", label: "المجال الرئيسي" },
-        { value: "95.76% | 3.83/4.00", label: "المعدل التراكمي | GPA مكافئ" },
+        { value: "95.76% | 3.83/4.00", label: "المعدل التراكمي | GPA" },
       ],
     },
     projects: projectsAr,
