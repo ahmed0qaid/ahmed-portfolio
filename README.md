@@ -1,18 +1,30 @@
-# Ahmed AI Portfolio
+# Ahmed Shawqi Mohammed Qaid — Software Engineering Portfolio
 
 Next.js portfolio website with AI Project Assistant, Neon PostgreSQL, Prisma, Gemini/Groq failover, full content dashboard, CV toggle, and client lead intake.
 
 ## Main features
 
-- Professional Arabic portfolio using Cairo font.
+- Professional Arabic/English software engineering portfolio using Cairo font.
 - Full admin dashboard at `/dashboard`.
 - Change colors, layout, text, skills, services, projects, contact data, and section visibility from the dashboard.
 - Enable/disable CV download from the dashboard.
 - AI Chat Widget using Gemini first, then Groq fallback.
-- Client lead intake: the visitor chats with the assistant, enters contact data, and clicks **إرسال الطلب الآن**.
+- Client lead intake: the visitor chats with the assistant, enters contact data, and sends a structured request.
 - Leads are saved in Neon PostgreSQL and shown in the dashboard.
 - Lead statuses: NEW, REVIEWED, CONTACTED, ACCEPTED, REJECTED.
 - Optional notifications through Telegram or Resend email.
+
+## Latest engineering challenge
+
+**Participant — ICPC 2026 Online Challenge 1 powered by Huawei**
+
+Worked on **Problem A: Edge–Cloud Collaborative Scheduling** and iteratively developed a C++ scheduling solution covering dynamic batching, resource allocation, latency/throughput trade-offs, SLO-aware scheduling, and model-predictive scheduling strategies.
+
+- Challenge repository: https://github.com/ahmed2qaid/edge-cloud-collaborative-scheduling
+- Codeforces problem: https://codeforces.com/contest/2251/problem/A
+- Codeforces profile: https://codeforces.com/profile/ayhywi
+
+This is listed factually as a participation entry; no winner, finalist, award, or ranking claim is made.
 
 ## Required Vercel environment variables
 
@@ -66,7 +78,7 @@ The build command is already configured:
 prisma generate && prisma migrate deploy && next build
 ```
 
-After pushing to GitHub, Vercel will deploy automatically.
+After pushing to GitHub, Vercel deploys automatically when the repository is connected to the project.
 
 ## Dashboard usage
 
@@ -85,18 +97,14 @@ The dashboard includes an automatic color rotation option:
 - Supported intervals: 10 seconds or 15 seconds.
 - The site cycles through all built-in themes: Cyber Blue, Emerald Green, Royal Purple, and Sunset Orange.
 
-## Latest bilingual dashboard update
-
-This version includes:
+## Current identity and bilingual support
 
 - Full Arabic/English rendering with RTL/LTR alignment.
-- Arabic labels for AI Assistant as `المساعد الذكي`.
-- Correct name defaults:
-  - Arabic: `أحمد شوقي منصور`
-  - English: `AHMED SHAWQI MANSOUR`
+- Public identity standardized to:
+  - Arabic: `أحمد شوقي محمد قائد`
+  - English: `AHMED SHAWQI MOHAMMED QAID`
 - Dashboard editing for Arabic and English content separately.
 - `contentEn` settings stored in the existing `SiteSetting` table; no new database is required.
-- Legacy Arabic content normalization so older saved defaults are upgraded automatically where possible.
 
 Recommended Vercel settings:
 
