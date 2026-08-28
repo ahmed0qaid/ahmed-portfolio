@@ -55,7 +55,7 @@ export default async function Home() {
       ...content.about,
       kicker: "نبذة",
       title: "نبذة مهنية مختصرة",
-      subtitle: "ملخص مهني يركز على هندسة البرمجيات، الباك اند، قواعد البيانات، والذكاء الاصطناعي وتطبيقات النماذج اللغوية الكبيرة.",
+      subtitle: "تركيزي المهني يجمع بين هندسة البرمجيات، الباك اند، قواعد البيانات، والذكاء الاصطناعي وتطبيقات النماذج اللغوية الكبيرة.",
       paragraphs: [
         "تقني معلومات ومهندس برمجيات مبتدئ، لدي خبرة عملية في بناء ودعم تطبيقات أعمال حقيقية. طورت نظام إدارة داخليًا وموقعًا خاصًا بشركة تعمل في المجال الصناعي، وعملت عمليًا على SQL وقواعد البيانات العلائقية وواجهات REST APIs والمصادقة وتصحيح الأخطاء والتحسين المستمر للخصائص.",
         "كما طورت وحسّنت بشكل تكراري حلًا بلغة C++ لتحدي Edge–Cloud Collaborative Scheduling ضمن ICPC 2026 Online Challenge 1 powered by Huawei، مما عزز مهاراتي في الخوارزميات والجدولة وموازنة الأداء والتفكير في الأنظمة. أركز مهنيًا على Backend Development والذكاء الاصطناعي، مع اهتمام خاص بتطبيقات LLMs ودمجها مع الأنظمة والخدمات الخلفية وبناء حلول عملية مدعومة بالذكاء الاصطناعي.",
@@ -66,6 +66,18 @@ export default async function Home() {
         { value: "95.76% | 3.83/4.00", label: "المعدل التراكمي | GPA" },
       ],
     },
+    servicesHeader: {
+      ...content.servicesHeader,
+      kicker: "الخدمات",
+      title: "الخدمات التقنية",
+      subtitle: "تطوير حلول عملية تشمل الباك اند، تطبيقات الويب والموبايل، قواعد البيانات، والأتمتة.",
+    },
+    skillsHeader: {
+      ...content.skillsHeader,
+      kicker: "المهارات",
+      title: "المهارات التقنية",
+      subtitle: "تقنيات وأدوات أستخدمها في تطوير الأنظمة والتطبيقات وبناء الحلول البرمجية.",
+    },
     projectsHeader: {
       ...content.projectsHeader,
       kicker: "المشاريع",
@@ -73,6 +85,12 @@ export default async function Home() {
       subtitle: "مشاريع مختارة توضح الفكرة، التقنيات المستخدمة، وطبيعة العمل التقني في كل مشروع.",
     },
     projects: projectsAr,
+    contact: {
+      ...content.contact,
+      kicker: "تواصل",
+      title: "ابدأ طلبك الآن",
+      subtitle: "اختر وسيلة التواصل المناسبة وشارك تفاصيل طلبك أو مشروعك.",
+    },
     footer: {
       ...content.footer,
       text: "© 2026 أحمد شوقي محمد قائد. معرض أعمال برمجي ونظام استقبال طلبات ذكي.",
@@ -91,7 +109,7 @@ export default async function Home() {
       ...contentEn.about,
       kicker: "About",
       title: "Professional Summary",
-      subtitle: "A professional summary focused on software engineering, backend development, databases, AI, and practical LLM applications.",
+      subtitle: "My current focus combines software engineering, backend development, databases, AI, and practical LLM applications.",
       paragraphs: [
         "Information Technology specialist and entry-level software engineer with hands-on experience building and supporting real-world business applications. Developed an internal management system and company website for a manufacturing business, with practical work in SQL, relational databases, REST APIs, authentication, debugging, and iterative feature enhancement.",
         "Also developed and iteratively optimized a C++ edge-cloud scheduling solution for ICPC 2026 Online Challenge 1 powered by Huawei, strengthening skills in algorithms, scheduling, performance trade-offs, and systems thinking. Professionally focused on backend engineering and artificial intelligence, with a particular interest in LLM applications, integrating AI capabilities into backend systems, and building practical AI-powered services.",
@@ -102,6 +120,18 @@ export default async function Home() {
         { value: "95.76% | 3.83/4.00", label: "Cumulative Average | GPA Equivalent" },
       ],
     },
+    servicesHeader: {
+      ...contentEn.servicesHeader,
+      kicker: "Services",
+      title: "Technical Services",
+      subtitle: "Practical solutions across backend development, web and mobile applications, databases, and automation.",
+    },
+    skillsHeader: {
+      ...contentEn.skillsHeader,
+      kicker: "Skills",
+      title: "Technical Skills",
+      subtitle: "Technologies and tools I use to build applications, systems, and practical software solutions.",
+    },
     projectsHeader: {
       ...contentEn.projectsHeader,
       kicker: "Projects",
@@ -109,6 +139,12 @@ export default async function Home() {
       subtitle: "Selected projects highlighting the idea, technologies used, and the technical work involved in each project.",
     },
     projects: projectsEn,
+    contact: {
+      ...contentEn.contact,
+      kicker: "Contact",
+      title: "Start Your Request Now",
+      subtitle: "Choose the contact method that works best for you and share the details of your request or project.",
+    },
     footer: {
       ...contentEn.footer,
       text: "© 2026 AHMED SHAWQI MOHAMMED QAID. Software engineering portfolio and AI-assisted client intake system.",
