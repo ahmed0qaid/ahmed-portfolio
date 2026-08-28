@@ -8,8 +8,8 @@ type FooterProps = {
 
 export function Footer({ content, contentEn }: FooterProps) {
   return (
-    <footer className="border-t border-white/10 py-8">
-      <div className="container-shell flex flex-col gap-3 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
+    <footer className="border-t border-white/10 py-6 sm:py-8">
+      <div className="container-shell flex flex-col gap-2.5 text-sm text-slate-400 md:flex-row md:items-center md:justify-between md:gap-3">
         <p><LocalizedText ar={content.footer.text} en={contentEn.footer.text} /></p>
         <a href="#home" className="text-cyanBrand hover:text-cyan-200"><LocalizedText ar="العودة للأعلى" en="Back to top" /></a>
       </div>
