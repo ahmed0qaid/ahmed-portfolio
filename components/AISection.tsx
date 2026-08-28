@@ -16,7 +16,7 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
 
   return (
     <section id="assistant" className={isCompact ? "py-12" : "py-20"}>
-      <div className="container-shell grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+      <div className="container-shell grid gap-5 sm:gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-8">
         <div>
           <SectionHeader
             kicker={ai.kicker}
@@ -26,14 +26,14 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
             titleEn={english.title}
             subtitleEn={english.subtitle}
           />
-          <div className="mt-8 flex gap-3">
+          <div className="mt-6 flex gap-3 sm:mt-7 lg:mt-8">
             <a href="#chat" className="btn-primary">
               <LocalizedText ar={ai.primaryCta} en={english.primaryCta} />
             </a>
           </div>
         </div>
 
-        <div className="ms-auto w-[88%] max-w-[560px] sm:mx-auto sm:w-[94%] md:w-[90%] lg:mx-0 lg:w-full lg:max-w-none">
+        <div className="mx-auto w-[88%] max-w-[560px] sm:w-[92%] md:w-[88%] lg:mx-0 lg:w-full lg:max-w-none">
           <div className="github-panel relative overflow-hidden rounded-[1.75rem] p-4 sm:p-5 lg:p-6">
             <div
               aria-hidden="true"
