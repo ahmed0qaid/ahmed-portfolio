@@ -5,17 +5,21 @@ import "./globals.css";
 const cairo = Cairo({ subsets: ["arabic", "latin"], variable: "--font-cairo" });
 
 export const metadata: Metadata = {
-  title: "AHMED SHAWQI MANSOUR | Software Engineer & AI Portfolio",
+  title: "AHMED SHAWQI MOHAMMED QAID | Software Engineer Portfolio",
   description:
-    "Portfolio website for AHMED SHAWQI MANSOUR, Software Engineer, Backend and Full-Stack Developer, with AI Project Assistant for client requirement collection.",
+    "Portfolio website for AHMED SHAWQI MOHAMMED QAID, an entry-level Software Engineer focused on backend development, databases, systems, C++, Flutter, and practical AI-enabled software projects.",
   keywords: [
-    "AHMED SHAWQI MANSOUR",
+    "AHMED SHAWQI MOHAMMED QAID",
+    "Ahmed Qaid",
     "Software Engineer",
     "Backend Developer",
-    "Full-Stack Developer",
+    "Database Developer",
+    "C++",
     "Flutter",
-    "Laravel",
-    "AI Assistant",
+    "PostgreSQL",
+    "Supabase",
+    "Competitive Programming",
+    "ICPC",
   ],
 };
 
