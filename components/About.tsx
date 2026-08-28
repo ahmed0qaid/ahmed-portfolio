@@ -52,8 +52,8 @@ export function About({ content, contentEn, layoutVariant }: AboutProps) {
         : "grid-cols-1 sm:grid-cols-3";
 
   return (
-    <section id="about" className={isCompact ? "py-12" : "py-20"}>
-      <div className="container-shell grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+    <section id="about" className={isCompact ? "py-9 sm:py-10 lg:py-12" : "py-10 sm:py-12 lg:py-16"}>
+      <div className="container-shell grid items-start gap-6 sm:gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
         <SectionHeader
           kicker={about.kicker}
           title={about.title}
@@ -63,22 +63,22 @@ export function About({ content, contentEn, layoutVariant }: AboutProps) {
           subtitleEn={english.subtitle}
         />
 
-        <div className="card-border overflow-hidden rounded-[2rem] bg-white/[0.012] p-6 leading-8 text-slate-300 sm:p-7">
+        <div className="card-border overflow-hidden rounded-[2rem] bg-white/[0.012] p-5 leading-8 text-slate-300 sm:p-6 lg:p-7">
           <div className="max-w-3xl">
             {about.paragraphs.map((paragraph, index) => (
-              <p key={`${paragraph}-${index}`} className="mt-5 first:mt-0">
+              <p key={`${paragraph}-${index}`} className="mt-4 first:mt-0 sm:mt-5">
                 <LocalizedText ar={paragraph} en={english.paragraphs[index] || paragraph} />
               </p>
             ))}
           </div>
 
           {about.stats.length ? (
-            <div className="mt-8 border-t border-white/[0.07] pt-6">
-              <div className={`grid gap-4 ${statsGridClass}`}>
+            <div className="mt-6 border-t border-white/[0.07] pt-5 sm:mt-7 sm:pt-6">
+              <div className={`grid gap-3 sm:gap-4 ${statsGridClass}`}>
                 {about.stats.map((stat, index) => (
                   <div
                     key={`${stat.value}-${stat.label}-${index}`}
-                    className="group relative flex min-h-[108px] flex-col items-center justify-center overflow-hidden rounded-[1.35rem] border border-white/[0.09] bg-[linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.018))] px-5 py-4 text-center shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-[0_16px_38px_rgba(0,0,0,0.18)]"
+                    className="group relative flex min-h-[104px] flex-col items-center justify-center overflow-hidden rounded-[1.35rem] border border-white/[0.09] bg-[linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.018))] px-4 py-4 text-center shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-[0_16px_38px_rgba(0,0,0,0.18)] sm:px-5"
                   >
                     <div
                       aria-hidden="true"
