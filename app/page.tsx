@@ -51,6 +51,21 @@ export default async function Home() {
       nameEn: "AHMED SHAWQI MOHAMMED QAID",
       logoText: "AQ",
     },
+    about: {
+      ...content.about,
+      kicker: "نبذة",
+      title: "نبذة مهنية مختصرة",
+      subtitle: "ملخص مهني متوافق مع السيرة الذاتية ويركز على البرمجة، الباك اند، قواعد البيانات وحل المشكلات.",
+      paragraphs: [
+        "أنا طالب تقنية معلومات في السنة النهائية ومهندس برمجيات مبتدئ، لدي خبرة عملية في بناء ودعم تطبيقات أعمال حقيقية. طورت نظام إدارة داخليًا وموقعًا خاصًا بشركة تعمل في المجال الصناعي، وعملت عمليًا على SQL وقواعد البيانات العلائقية وواجهات REST APIs والمصادقة وتصحيح الأخطاء والتحسين المستمر للخصائص.",
+        "كما طورت وحسّنت بشكل تكراري حلًا بلغة C++ لتحدي Edge–Cloud Collaborative Scheduling ضمن ICPC 2026 Online Challenge 1 powered by Huawei، مما عزز مهاراتي في الخوارزميات والجدولة وموازنة الأداء والتفكير في الأنظمة. أركز حاليًا على Backend Development وDatabase Systems، مع اهتمام بتقنيات AI/ML والبنية السحابية والأمن السيبراني.",
+      ],
+      stats: [
+        { value: "2026", label: "التخرج المتوقع" },
+        { value: "Backend", label: "المجال الرئيسي" },
+        { value: "C++ / SQL", label: "برمجة وخوارزميات" },
+      ],
+    },
     projects: projectsAr,
     footer: {
       ...content.footer,
@@ -65,6 +80,21 @@ export default async function Home() {
       nameAr: "AHMED SHAWQI MOHAMMED QAID",
       nameEn: "AHMED SHAWQI MOHAMMED QAID",
       logoText: "AQ",
+    },
+    about: {
+      ...contentEn.about,
+      kicker: "About",
+      title: "Professional Summary",
+      subtitle: "A CV-aligned summary focused on software engineering, backend development, databases, and problem solving.",
+      paragraphs: [
+        "Final-year Information Technology student and entry-level software engineer with hands-on experience building and supporting real-world business applications. Developed an internal management system and company website for a manufacturing business, with practical work in SQL, relational databases, REST APIs, authentication, debugging, and iterative feature enhancement.",
+        "Also developed and iteratively optimized a C++ edge-cloud scheduling solution for ICPC 2026 Online Challenge 1 powered by Huawei, strengthening skills in algorithms, scheduling, performance trade-offs, and systems thinking. Currently focused on backend engineering and database systems, with interests in AI/ML infrastructure, cloud technologies, and cybersecurity.",
+      ],
+      stats: [
+        { value: "2026", label: "Expected Graduation" },
+        { value: "Backend", label: "Primary Focus" },
+        { value: "C++ / SQL", label: "Programming & Algorithms" },
+      ],
     },
     projects: projectsEn,
     footer: {
