@@ -63,6 +63,7 @@ export default async function Home() {
       stats: [
         { value: "IT", label: "تقنية معلومات" },
         { value: "Backend + AI", label: "المجال الرئيسي" },
+        { value: "95.76% | 3.83/4.00", label: "المعدل التراكمي | GPA مكافئ" },
       ],
     },
     projects: projectsAr,
@@ -92,6 +93,7 @@ export default async function Home() {
       stats: [
         { value: "IT", label: "Information Technology" },
         { value: "Backend + AI", label: "Primary Focus" },
+        { value: "95.76% | 3.83/4.00", label: "Cumulative Average | GPA Equivalent" },
       ],
     },
     projects: projectsEn,
