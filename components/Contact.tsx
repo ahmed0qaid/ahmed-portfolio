@@ -122,7 +122,7 @@ export function Contact({ content, contentEn, layoutVariant }: ContactProps) {
 
   return (
     <section id="contact" className={isCompact ? "py-12" : "py-20"}>
-      <div className="container-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="container-shell grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
         <SectionHeader
           kicker={contact.kicker}
           title={contact.title}
@@ -131,11 +131,14 @@ export function Contact({ content, contentEn, layoutVariant }: ContactProps) {
           titleEn={english.contact.title}
           subtitleEn={english.contact.subtitle}
         />
-        <div className="github-panel rounded-[2rem] p-6">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {visibleItems.map((item) => (
-              <ContactCard key={item.id} content={content} contentEn={contentEn} item={item} />
-            ))}
+
+        <div className="mx-auto w-[90%] max-w-[600px] sm:w-[92%] md:w-[88%] lg:mx-0 lg:w-full lg:max-w-none">
+          <div className="github-panel rounded-[1.75rem] p-4 sm:p-5 lg:p-6">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+              {visibleItems.map((item) => (
+                <ContactCard key={item.id} content={content} contentEn={contentEn} item={item} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
