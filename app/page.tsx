@@ -63,7 +63,6 @@ export default async function Home() {
       stats: [
         { value: "IT", label: "تقنية معلومات" },
         { value: "Backend", label: "المجال الرئيسي" },
-        { value: "C++ / SQL", label: "برمجة وخوارزميات" },
       ],
     },
     projects: projectsAr,
@@ -93,7 +92,6 @@ export default async function Home() {
       stats: [
         { value: "IT", label: "Information Technology" },
         { value: "Backend", label: "Primary Focus" },
-        { value: "C++ / SQL", label: "Programming & Algorithms" },
       ],
     },
     projects: projectsEn,
