@@ -92,11 +92,14 @@ export function Hero({ cvDownloadEnabled, content, contentEn, layoutVariant }: H
         </div>
 
         {!isCompact ? (
-          <div className={`relative mx-auto h-fit min-h-0 w-full max-w-[520px] self-start xl:self-center ${isShowcase ? "order-1 xl:order-2" : ""}`}>
+          <div
+            className={`relative mx-auto !m-x-auto h-auto min-h-0 w-full max-w-[520px] self-start !border-0 !bg-transparent !p-0 !shadow-none !backdrop-blur-none xl:self-center ${isShowcase ? "order-1 xl:order-2" : ""}`}
+            style={{ minHeight: 0, height: "auto", padding: 0, marginTop: 0, marginBottom: 0, background: "transparent", border: 0, boxShadow: "none" }}
+          >
             <div className="pointer-events-none absolute -left-8 -top-8 h-28 w-28 rounded-full bg-cyanBrand/15 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-violetBrand/15 blur-3xl" />
 
-            <div className="repo-card relative overflow-hidden rounded-[1.75rem] p-4 sm:p-5">
+            <div className="repo-card relative h-auto min-h-0 overflow-hidden rounded-[1.75rem] p-4 sm:p-5">
               <div aria-hidden="true" className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/55 to-transparent" />
               <div aria-hidden="true" className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-cyanBrand/[0.07] blur-3xl" />
 
