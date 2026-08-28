@@ -25,6 +25,9 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
         <div className={`mt-10 grid gap-5 ${isShowcase ? "lg:grid-cols-3" : "md:grid-cols-2"}`}>
           {content.projects.map((project, index) => {
             const projectEn = english.projects[index];
+            const projectName = `${project.name} ${projectEn?.name || ""}`;
+            const isIcpcChallenge = projectName.includes("ICPC 2026");
+
             return (
               <article key={`${project.name}-${index}`} className="repo-card group rounded-3xl p-6 transition hover:-translate-y-1 hover:border-violetBrand/50">
                 <div className="flex items-center justify-between gap-4">
@@ -41,6 +44,27 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
                     </span>
                   ))}
                 </div>
+
+                {isIcpcChallenge ? (
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <a
+                      href="https://github.com/ahmed2qaid/edge-cloud-collaborative-scheduling"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-xl border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100 transition hover:bg-cyan-300/20"
+                    >
+                      <LocalizedText ar="الكود على GitHub" en="GitHub Repository" />
+                    </a>
+                    <a
+                      href="https://codeforces.com/contest/2251/problem/A"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-xl border border-violet-300/30 bg-violet-300/10 px-4 py-2 text-sm font-bold text-violet-100 transition hover:bg-violet-300/20"
+                    >
+                      <LocalizedText ar="صفحة المسألة" en="Codeforces Problem" />
+                    </a>
+                  </div>
+                ) : null}
               </article>
             );
           })}
