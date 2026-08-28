@@ -52,11 +52,11 @@ export function Hero({ cvDownloadEnabled, content, contentEn, layoutVariant }: H
   const focusIcons = [Server, Smartphone, Database, BrainCircuit, Workflow];
 
   return (
-    <section id="home" className={`relative overflow-hidden ${isCompact ? "py-14 md:py-18" : "py-20 md:py-28"}`}>
+    <section id="home" className={`relative overflow-hidden ${isCompact ? "py-10 sm:py-12 lg:py-14" : "py-12 sm:py-14 lg:py-20"}`}>
       <div className="absolute inset-0 -z-10 bg-grid bg-[size:36px_36px] opacity-40" />
-      <div className={`container-shell grid items-center gap-12 ${isShowcase ? "xl:grid-cols-[0.85fr_1.15fr]" : "xl:grid-cols-[1.1fr_0.9fr]"}`}>
+      <div className={`container-shell grid items-center gap-8 sm:gap-10 xl:gap-12 ${isShowcase ? "xl:grid-cols-[0.85fr_1.15fr]" : "xl:grid-cols-[1.1fr_0.9fr]"}`}>
         <div className={isShowcase ? "order-2 xl:order-1" : ""}>
-          <div className="repo-chip mb-6 inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-cyan-100">
+          <div className="repo-chip mb-5 inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-cyan-100 sm:mb-6">
             <Sparkles className="h-4 w-4" />
             <LocalizedText ar={hero.badge} en={english.hero.badge} />
           </div>
@@ -64,17 +64,17 @@ export function Hero({ cvDownloadEnabled, content, contentEn, layoutVariant }: H
             <span className="hero-name-inline">
               <LocalizedText ar={profile.nameAr} en={english.profile.nameEn || profile.nameEn} />
             </span>
-            <span className="hero-highlight-title mt-3 block gradient-text">
+            <span className="hero-highlight-title mt-2.5 block gradient-text sm:mt-3">
               <TypewriterTitle arTerms={arDynamicTitles} enTerms={enDynamicTitles} />
             </span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-9 text-slate-300">
+          <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300 sm:mt-6 sm:text-lg sm:leading-9">
             <LocalizedText ar={profileSubtitleAr} en={profileSubtitleEn} />
           </p>
-          <p className="mt-5 max-w-2xl text-base leading-8 text-slate-400">
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-400 sm:mt-5 sm:text-base sm:leading-8">
             <LocalizedText ar={hero.description} en={english.hero.description} />
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
             <a href="#projects" className="btn-primary gap-2">
               <LocalizedText ar={hero.primaryCta} en={english.hero.primaryCta} /> <ArrowLeft className="h-4 w-4 rtl-icon" />
             </a>
