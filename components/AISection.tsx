@@ -33,8 +33,11 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
           </div>
         </div>
 
-        <div className="mx-auto h-auto min-h-0 w-[88%] self-start sm:w-[92%] md:w-[88%] lg:mx-0 lg:w-full">
-          <div className="github-panel relative flex h-auto min-h-0 flex-col justify-start overflow-hidden rounded-[1.75rem] p-4 sm:p-5 lg:p-6">
+        <div className="mx-auto w-[88%] self-start sm:w-[92%] md:w-[88%] lg:mx-0 lg:w-full">
+          <div
+            className="card-border relative flex w-full flex-col justify-start overflow-hidden rounded-[1.75rem] p-4 sm:p-5 lg:p-6"
+            style={{ height: "fit-content", minHeight: 0, paddingTop: "1rem" }}
+          >
             <div
               aria-hidden="true"
               className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/45 to-transparent"
