@@ -56,9 +56,7 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
             return (
               <article
                 key={`${project.name}-${index}`}
-                className={`repo-card group rounded-3xl p-5 transition hover:-translate-y-1 hover:border-violetBrand/50 sm:p-6 ${
-                  isAttendanceSuite ? "md:col-span-2 lg:col-span-2" : ""
-                }`}
+                className="repo-card group flex h-full flex-col rounded-3xl p-5 transition hover:-translate-y-1 hover:border-violetBrand/50 sm:p-6"
               >
                 <div className="flex items-start justify-between gap-3 sm:gap-4">
                   <h3 className="text-lg font-black leading-7 text-white sm:text-xl">
@@ -69,7 +67,7 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
                   </span>
                 </div>
 
-                <p className="mt-3 leading-7 text-slate-300/95 sm:mt-4 sm:leading-8">
+                <p className={`mt-3 text-slate-300/95 sm:mt-4 ${isAttendanceSuite ? "line-clamp-3 leading-7" : "leading-7 sm:leading-8"}`}>
                   <LocalizedText ar={project.description} en={projectEn?.description || project.description} />
                 </p>
 
@@ -85,26 +83,28 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
                 </div>
 
                 {isAttendanceSuite ? (
-                  <div className="mt-6 rounded-2xl border border-white/10 bg-black/10 p-4 sm:p-5">
-                    <div className="mb-3 flex items-center justify-between gap-3">
-                      <p className="text-sm font-bold text-white">
-                        <LocalizedText ar="النسخ المستقلة على GitHub" en="Independent GitHub implementations" />
+                  <div className="mt-4 rounded-2xl border border-white/10 bg-black/10 p-3.5">
+                    <div className="mb-2.5 flex items-center justify-between gap-2">
+                      <p className="text-xs font-bold text-white sm:text-sm">
+                        <LocalizedText ar="النسخ على GitHub" en="GitHub implementations" />
                       </p>
-                      <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-[11px] font-bold text-cyan-100">
-                        4 Repositories
+                      <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2 py-0.5 text-[10px] font-bold text-cyan-100">
+                        4 Repos
                       </span>
                     </div>
-                    <div className="grid gap-2.5 sm:grid-cols-2">
+                    <div className="grid grid-cols-2 gap-2">
                       {attendanceRepositories.map((repo) => (
                         <a
                           key={repo.href}
                           href={repo.href}
                           target="_blank"
                           rel="noreferrer"
-                          className="flex min-h-14 items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-bold text-slate-100 transition hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-cyan-50"
+                          className="flex min-h-10 items-center justify-between gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-2.5 py-2 text-[11px] font-bold leading-4 text-slate-100 transition hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-cyan-50 sm:text-xs"
                         >
-                          <LocalizedText ar={repo.labelAr} en={repo.labelEn} />
-                          <span className="shrink-0 text-xs font-semibold text-cyan-200">GitHub ↗</span>
+                          <span className="min-w-0 truncate">
+                            <LocalizedText ar={repo.labelAr} en={repo.labelEn} />
+                          </span>
+                          <span className="shrink-0 text-[10px] font-semibold text-cyan-200">↗</span>
                         </a>
                       ))}
                     </div>
