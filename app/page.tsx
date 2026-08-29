@@ -35,13 +35,37 @@ export default async function Home() {
       "Participated in ICPC 2026 Online Challenge 1 powered by Huawei and developed an iterative C++ solution for Problem A: Edge–Cloud Collaborative Scheduling, exploring dynamic batching, resource allocation, latency/throughput trade-offs, SLO-aware scheduling, and model-predictive scheduling strategies.",
   };
 
-  const projectsAr = content.projects.some((project) => project.name.includes("ICPC 2026"))
+  const attendanceAr = {
+    name: "نظام إدارة دوام الموظفين — متعدد المعماريات",
+    status: "مشروع مميز",
+    stack: ["Next.js", "Flutter", "Laravel", "Supabase", "PostgreSQL", "Responsive UI"],
+    description:
+      "نظام متكامل لحساب وإدارة دوام الموظفين يدعم وردية واحدة أو ورديتين متناوبتين أسبوعيًا، الحضور والانصراف، التأخير، الانصراف المبكر، الغياب، السجلات المعلقة، والوقت الإضافي بعد نهاية الوردية. تم تنفيذ نفس منطق العمل بأربع معماريات مستقلة للمقارنة بين تقنيات الويب والموبايل والباك اند.",
+  };
+
+  const attendanceEn = {
+    name: "Employee Attendance Management — Multi-Architecture Suite",
+    status: "Featured Project",
+    stack: ["Next.js", "Flutter", "Laravel", "Supabase", "PostgreSQL", "Responsive UI"],
+    description:
+      "A complete employee attendance and shift management system supporting single or weekly rotating shifts, check-in/out tracking, lateness, early departure, absences, pending records, and overtime after the scheduled shift. The same business logic is implemented in four independent architectures to compare modern web, mobile, and backend stacks.",
+  };
+
+  const projectsWithChallengeAr = content.projects.some((project) => project.name.includes("ICPC 2026"))
     ? content.projects
     : [...content.projects, challengeAr];
 
-  const projectsEn = contentEn.projects.some((project) => project.name.includes("ICPC 2026"))
+  const projectsWithChallengeEn = contentEn.projects.some((project) => project.name.includes("ICPC 2026"))
     ? contentEn.projects
     : [...contentEn.projects, challengeEn];
+
+  const projectsAr = projectsWithChallengeAr.some((project) => project.name.includes("نظام إدارة دوام الموظفين"))
+    ? projectsWithChallengeAr
+    : [...projectsWithChallengeAr, attendanceAr];
+
+  const projectsEn = projectsWithChallengeEn.some((project) => project.name.includes("Employee Attendance"))
+    ? projectsWithChallengeEn
+    : [...projectsWithChallengeEn, attendanceEn];
 
   const portfolioContent = {
     ...content,
