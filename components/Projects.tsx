@@ -8,6 +8,29 @@ type ProjectsProps = {
   layoutVariant: LayoutVariant;
 };
 
+const attendanceRepositories = [
+  {
+    labelAr: "Next.js مستقل",
+    labelEn: "Next.js Standalone",
+    href: "https://github.com/ahmed2qaid/employee-attendance-nextjs-standalone",
+  },
+  {
+    labelAr: "Next.js + Supabase",
+    labelEn: "Next.js + Supabase",
+    href: "https://github.com/ahmed2qaid/employee-attendance-nextjs-supabase",
+  },
+  {
+    labelAr: "Flutter + Supabase",
+    labelEn: "Flutter + Supabase",
+    href: "https://github.com/ahmed2qaid/employee-attendance-flutter-supabase",
+  },
+  {
+    labelAr: "Laravel + Supabase",
+    labelEn: "Laravel + Supabase",
+    href: "https://github.com/ahmed2qaid/employee-attendance-laravel-supabase",
+  },
+];
+
 export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
   const isCompact = layoutVariant === "compact";
   const isShowcase = layoutVariant === "showcase";
@@ -27,25 +50,66 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
             const projectEn = english.projects[index];
             const projectName = `${project.name} ${projectEn?.name || ""}`;
             const isIcpcChallenge = projectName.includes("ICPC 2026");
+            const isAttendanceSuite =
+              projectName.includes("نظام إدارة دوام الموظفين") || projectName.includes("Employee Attendance");
 
             return (
-              <article key={`${project.name}-${index}`} className="repo-card group rounded-3xl p-5 transition hover:-translate-y-1 hover:border-violetBrand/50 sm:p-6">
+              <article
+                key={`${project.name}-${index}`}
+                className={`repo-card group rounded-3xl p-5 transition hover:-translate-y-1 hover:border-violetBrand/50 sm:p-6 ${
+                  isAttendanceSuite ? "md:col-span-2 lg:col-span-2" : ""
+                }`}
+              >
                 <div className="flex items-start justify-between gap-3 sm:gap-4">
-                  <h3 className="text-lg font-black leading-7 text-white sm:text-xl"><LocalizedText ar={project.name} en={projectEn?.name || project.name} /></h3>
+                  <h3 className="text-lg font-black leading-7 text-white sm:text-xl">
+                    <LocalizedText ar={project.name} en={projectEn?.name || project.name} />
+                  </h3>
                   <span className="repo-chip shrink-0 px-3 py-1 text-xs font-semibold text-violet-100">
                     <LocalizedText ar={project.status} en={projectEn?.status || project.status} />
                   </span>
                 </div>
-                <p className="mt-3 leading-7 text-slate-300/95 sm:mt-4 sm:leading-8"><LocalizedText ar={project.description} en={projectEn?.description || project.description} /></p>
+
+                <p className="mt-3 leading-7 text-slate-300/95 sm:mt-4 sm:leading-8">
+                  <LocalizedText ar={project.description} en={projectEn?.description || project.description} />
+                </p>
+
                 <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
                   {project.stack.map((tech) => (
-                    <span key={tech} className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-semibold text-cyan-100">
+                    <span
+                      key={tech}
+                      className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-semibold text-cyan-100"
+                    >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {isIcpcChallenge ? (
+                {isAttendanceSuite ? (
+                  <div className="mt-6 rounded-2xl border border-white/10 bg-black/10 p-4 sm:p-5">
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <p className="text-sm font-bold text-white">
+                        <LocalizedText ar="النسخ المستقلة على GitHub" en="Independent GitHub implementations" />
+                      </p>
+                      <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-[11px] font-bold text-cyan-100">
+                        4 Repositories
+                      </span>
+                    </div>
+                    <div className="grid gap-2.5 sm:grid-cols-2">
+                      {attendanceRepositories.map((repo) => (
+                        <a
+                          key={repo.href}
+                          href={repo.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex min-h-14 items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-bold text-slate-100 transition hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-cyan-50"
+                        >
+                          <LocalizedText ar={repo.labelAr} en={repo.labelEn} />
+                          <span className="shrink-0 text-xs font-semibold text-cyan-200">GitHub ↗</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : isIcpcChallenge ? (
                   <div className="mt-5 flex flex-wrap gap-2.5 sm:mt-6 sm:gap-3">
                     <a
                       href="https://github.com/ahmed2qaid/edge-cloud-collaborative-scheduling"
