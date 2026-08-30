@@ -31,6 +31,8 @@ const attendanceRepositories = [
   },
 ];
 
+const flowGuardStack = ["Next.js", "FastAPI", "n8n", "MCP", "PostgreSQL", "Docker"];
+
 export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
   const isCompact = layoutVariant === "compact";
   const isShowcase = layoutVariant === "showcase";
@@ -52,6 +54,22 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
             const isIcpcChallenge = projectName.includes("ICPC 2026");
             const isAttendanceSuite =
               projectName.includes("نظام إدارة دوام الموظفين") || projectName.includes("Employee Attendance");
+            const isFlowGuard =
+              projectName.includes("أتمتة المحتوى باستخدام n8n") || projectName.includes("n8n Content Automation");
+
+            const displayNameAr = isFlowGuard ? "FlowGuard — منصة تحكم للأتمتة الذكية" : project.name;
+            const displayNameEn = isFlowGuard
+              ? "FlowGuard — Agentic Automation Control Plane"
+              : projectEn?.name || project.name;
+            const displayStatusAr = isFlowGuard ? "مفتوح المصدر · v0.2" : project.status;
+            const displayStatusEn = isFlowGuard ? "Open Source · v0.2" : projectEn?.status || project.status;
+            const displayDescriptionAr = isFlowGuard
+              ? "طبقة تحكم فوق n8n وAI Agents تضيف Policy Engine، موافقات بشرية، MCP Gateway، Dry Run، Retry/Replay، تتبع التكلفة وسجل تنفيذ قابل للمراجعة."
+              : project.description;
+            const displayDescriptionEn = isFlowGuard
+              ? "A control plane for n8n and AI agents with policy enforcement, human approval, MCP tools, dry-runs, retry/replay lineage, cost tracking, and execution observability."
+              : projectEn?.description || project.description;
+            const displayStack = isFlowGuard ? flowGuardStack : project.stack;
 
             return (
               <article
@@ -60,19 +78,19 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
               >
                 <div className="flex items-start justify-between gap-3 sm:gap-4">
                   <h3 className="text-lg font-black leading-7 text-white sm:text-xl">
-                    <LocalizedText ar={project.name} en={projectEn?.name || project.name} />
+                    <LocalizedText ar={displayNameAr} en={displayNameEn} />
                   </h3>
                   <span className="repo-chip shrink-0 px-3 py-1 text-xs font-semibold text-violet-100">
-                    <LocalizedText ar={project.status} en={projectEn?.status || project.status} />
+                    <LocalizedText ar={displayStatusAr} en={displayStatusEn} />
                   </span>
                 </div>
 
                 <p className={`mt-3 text-slate-300/95 sm:mt-4 ${isAttendanceSuite ? "line-clamp-3 leading-7" : "leading-7 sm:leading-8"}`}>
-                  <LocalizedText ar={project.description} en={projectEn?.description || project.description} />
+                  <LocalizedText ar={displayDescriptionAr} en={displayDescriptionEn} />
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
-                  {project.stack.map((tech) => (
+                  {displayStack.map((tech) => (
                     <span
                       key={tech}
                       className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-semibold text-cyan-100"
@@ -127,6 +145,20 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
                     >
                       <LocalizedText ar="صفحة المسألة" en="Codeforces Problem" />
                     </a>
+                  </div>
+                ) : isFlowGuard ? (
+                  <div className="mt-5 flex flex-wrap items-center gap-2.5 sm:mt-6 sm:gap-3">
+                    <a
+                      href="https://github.com/ahmed2qaid/agentic-automation-control-plane"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-xl border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100 transition hover:bg-cyan-300/20"
+                    >
+                      <LocalizedText ar="عرض FlowGuard على GitHub" en="View FlowGuard on GitHub" />
+                    </a>
+                    <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1.5 text-[11px] font-bold text-emerald-100">
+                      CI Passing
+                    </span>
                   </div>
                 ) : null}
               </article>
