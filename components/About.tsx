@@ -18,8 +18,8 @@ function StatValue({ value }: { value: string }) {
         dir="ltr"
         className={`max-w-full text-balance font-black leading-[1.08] tracking-[-0.035em] text-white ${
           isLong
-            ? "text-[1.15rem] sm:text-[1.28rem] lg:text-[1.35rem]"
-            : "text-[1.45rem] sm:text-[1.6rem] lg:text-[1.7rem]"
+            ? "text-[1.05rem] sm:text-[1.18rem] lg:text-[1.25rem]"
+            : "text-[1.35rem] sm:text-[1.5rem] lg:text-[1.6rem]"
         }`}
       >
         {value}
@@ -29,10 +29,10 @@ function StatValue({ value }: { value: string }) {
 
   return (
     <div dir="ltr" className="flex flex-col items-center justify-center">
-      <div className="text-[1.55rem] font-black leading-none tracking-[-0.04em] text-white sm:text-[1.7rem]">
+      <div className="text-[1.4rem] font-black leading-none tracking-[-0.04em] text-white sm:text-[1.55rem]">
         {parts[0]}
       </div>
-      <div className="mt-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-bold text-slate-200">
+      <div className="mt-2 rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-1 text-xs font-bold text-slate-300">
         {parts.slice(1).join(" · ")}
       </div>
     </div>
@@ -63,48 +63,45 @@ export function About({ content, contentEn, layoutVariant }: AboutProps) {
           subtitleEn={english.subtitle}
         />
 
-        <div className="card-border overflow-hidden rounded-[2rem] bg-white/[0.012] p-5 leading-8 text-slate-300 sm:p-6 lg:p-7">
-          <div className="max-w-3xl">
-            {about.paragraphs.map((paragraph, index) => (
-              <p key={`${paragraph}-${index}`} className="mt-4 first:mt-0 sm:mt-5">
-                <LocalizedText ar={paragraph} en={english.paragraphs[index] || paragraph} />
-              </p>
-            ))}
-          </div>
+        <div className="relative mx-auto w-full max-w-[760px]">
+          <div className="pointer-events-none absolute -left-8 -top-8 h-28 w-28 rounded-full bg-cyanBrand/10 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-violetBrand/10 blur-3xl" />
 
-          {about.stats.length ? (
-            <div className="mt-6 border-t border-white/[0.07] pt-5 sm:mt-7 sm:pt-6">
-              <div className={`grid gap-3 sm:gap-4 ${statsGridClass}`}>
-                {about.stats.map((stat, index) => (
-                  <div
-                    key={`${stat.value}-${stat.label}-${index}`}
-                    className="group relative flex min-h-[104px] flex-col items-center justify-center overflow-hidden rounded-[1.35rem] border border-white/[0.09] bg-[linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.018))] px-4 py-4 text-center shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-[0_16px_38px_rgba(0,0,0,0.18)] sm:px-5"
-                  >
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/55 to-transparent"
-                    />
-                    <div
-                      aria-hidden="true"
-                      className="absolute -top-12 left-1/2 h-24 w-32 -translate-x-1/2 rounded-full bg-cyan-300/[0.045] blur-2xl transition group-hover:bg-cyan-300/[0.08]"
-                    />
-                    <div
-                      aria-hidden="true"
-                      className="absolute left-4 top-4 h-1.5 w-1.5 rounded-full bg-cyan-300/70 shadow-[0_0_12px_rgba(103,232,249,0.55)]"
-                    />
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-white/[0.12] bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.018))] p-5 leading-8 text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_18px_55px_rgba(0,0,0,0.18)] backdrop-blur-[18px] sm:p-6 lg:p-7">
+            <div aria-hidden="true" className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/50 to-transparent" />
+            <div aria-hidden="true" className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-cyanBrand/[0.045] blur-3xl" />
 
-                    <div className="relative flex min-h-[40px] w-full items-center justify-center px-2">
-                      <StatValue value={stat.value} />
-                    </div>
-
-                    <div className="relative mt-2 max-w-[16rem] text-[0.78rem] font-semibold leading-5 text-slate-400">
-                      <LocalizedText ar={stat.label} en={english.stats[index]?.label || stat.label} />
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="relative max-w-3xl">
+              {about.paragraphs.map((paragraph, index) => (
+                <p key={`${paragraph}-${index}`} className="mt-4 first:mt-0 sm:mt-5">
+                  <LocalizedText ar={paragraph} en={english.paragraphs[index] || paragraph} />
+                </p>
+              ))}
             </div>
-          ) : null}
+
+            {about.stats.length ? (
+              <div className="relative mt-6 border-t border-white/[0.06] pt-5 sm:mt-7 sm:pt-6">
+                <div className={`grid gap-3 sm:gap-4 ${statsGridClass}`}>
+                  {about.stats.map((stat, index) => (
+                    <div
+                      key={`${stat.value}-${stat.label}-${index}`}
+                      className="group relative flex min-h-[98px] flex-col items-center justify-center overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.028] px-4 py-4 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.025)] transition duration-300 hover:-translate-y-0.5 hover:border-cyanBrand/20 hover:bg-white/[0.045] sm:px-5"
+                    >
+                      <div aria-hidden="true" className="absolute inset-y-3 start-0 w-[2px] rounded-full bg-gradient-to-b from-cyanBrand to-violetBrand opacity-0 transition group-hover:opacity-100" />
+
+                      <div className="relative flex min-h-[38px] w-full items-center justify-center px-2">
+                        <StatValue value={stat.value} />
+                      </div>
+
+                      <div className="relative mt-2 max-w-[16rem] text-[0.76rem] font-semibold leading-5 text-slate-400">
+                        <LocalizedText ar={stat.label} en={english.stats[index]?.label || stat.label} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     </section>
