@@ -32,6 +32,7 @@ const attendanceRepositories = [
 ];
 
 const flowGuardStack = ["Next.js", "FastAPI", "n8n", "MCP", "PostgreSQL", "Docker"];
+const reviewDNAStack = ["TypeScript", "Node.js", "GitHub Actions", "GitLab", "Docker", "CodeQL"];
 
 export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
   const isCompact = layoutVariant === "compact";
@@ -48,6 +49,57 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
           subtitleEn={english.projectsHeader.subtitle}
         />
         <div className={`mt-7 grid gap-4 sm:mt-8 sm:gap-5 lg:mt-10 ${isShowcase ? "lg:grid-cols-3" : "md:grid-cols-2"}`}>
+          <article className="repo-card group flex h-full flex-col rounded-3xl border-violetBrand/45 p-5 transition hover:-translate-y-1 hover:border-cyan-300/50 sm:p-6">
+            <div className="flex items-start justify-between gap-3 sm:gap-4">
+              <h3 className="text-lg font-black leading-7 text-white sm:text-xl">
+                <LocalizedText ar="ReviewDNA — هندسة المعرفة من مراجعات الكود" en="ReviewDNA — Engineering Knowledge Mining" />
+              </h3>
+              <span className="repo-chip shrink-0 px-3 py-1 text-xs font-semibold text-violet-100">
+                <LocalizedText ar="مشروع مميز · v0.2.0" en="Featured Open Source · v0.2.0" />
+              </span>
+            </div>
+
+            <p className="mt-3 leading-7 text-slate-300/95 sm:mt-4 sm:leading-8">
+              <LocalizedText
+                ar="أداة مفتوحة المصدر تستخرج القواعد الهندسية المتكررة من تاريخ Pull Requests ومراجعات الكود، وتربط كل قاعدة بالأدلة ودرجة ثقة قابلة للتفسير، مع كشف تعارض التوثيق وتطور القواعد وتصدير المعرفة إلى أدوات البرمجة بالذكاء الاصطناعي."
+                en="An open-source developer tool that mines Pull Request and code-review history into evidence-backed engineering conventions with explainable confidence, documentation drift, rule evolution, human decisions, and coding-agent exports."
+              />
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
+              {reviewDNAStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-semibold text-cyan-100"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-5 flex flex-wrap items-center gap-2.5 sm:mt-6 sm:gap-3">
+              <a
+                href="https://github.com/ahmed2qaid/reviewdna"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100 transition hover:bg-cyan-300/20"
+              >
+                <LocalizedText ar="عرض ReviewDNA على GitHub" en="View ReviewDNA on GitHub" />
+              </a>
+              <a
+                href="https://github.com/ahmed2qaid/reviewdna/releases/tag/v0.2.0"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl border border-violet-300/30 bg-violet-300/10 px-4 py-2 text-sm font-bold text-violet-100 transition hover:bg-violet-300/20"
+              >
+                <LocalizedText ar="الإصدار v0.2.0" en="Release v0.2.0" />
+              </a>
+              <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1.5 text-[11px] font-bold text-emerald-100">
+                CI + CodeQL
+              </span>
+            </div>
+          </article>
+
           {content.projects.map((project, index) => {
             const projectEn = english.projects[index];
             const projectName = `${project.name} ${projectEn?.name || ""}`;
