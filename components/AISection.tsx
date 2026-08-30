@@ -35,19 +35,10 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
 
         <div className="mx-auto w-[88%] self-start sm:w-[92%] md:w-[88%] lg:mx-0 lg:w-full">
           <div
-            className="card-border relative flex w-full flex-col justify-start overflow-hidden rounded-[1.75rem] p-4 sm:p-5 lg:p-6"
-            style={{ height: "fit-content", minHeight: 0, paddingTop: "1rem" }}
+            className="card-border flex w-full flex-col justify-start overflow-hidden rounded-[1.75rem] p-4 sm:p-5 lg:p-6"
+            style={{ height: "fit-content", minHeight: 0 }}
           >
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/45 to-transparent"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-cyanBrand/[0.055] blur-3xl"
-            />
-
-            <div className="relative flex shrink-0 items-center gap-3.5 border-b border-white/[0.065] pb-3.5 sm:pb-4">
+            <div className="flex shrink-0 items-center gap-3.5 border-b border-white/[0.065] pb-3.5 sm:pb-4">
               <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-cyanBrand/20 bg-cyanBrand/10 text-cyanBrand shadow-[0_8px_24px_rgba(0,0,0,0.16)] sm:h-12 sm:w-12 sm:rounded-[1.1rem]">
                 <Bot className="h-5 w-5 sm:h-6 sm:w-6" />
               </div>
@@ -61,7 +52,7 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
               </div>
             </div>
 
-            <div className="relative mt-3.5 space-y-2 sm:mt-4 sm:space-y-2.5">
+            <div className="mt-3.5 space-y-2 sm:mt-4 sm:space-y-2.5">
               {ai.processSteps.map((step, index) => (
                 <div
                   key={`${step}-${index}`}
