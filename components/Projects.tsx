@@ -1,4 +1,3 @@
-import { ArrowUpLeft, GitBranch, Sparkles } from "lucide-react";
 import type { LayoutVariant, SiteContent } from "@/lib/site-content";
 import { LocalizedText } from "./LocalizedText";
 import { SectionHeader } from "./SectionHeader";
@@ -34,6 +33,7 @@ const attendanceRepositories = [
 
 export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
   const isCompact = layoutVariant === "compact";
+  const isShowcase = layoutVariant === "showcase";
   const english = contentEn;
 
   return (
@@ -45,79 +45,37 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
           titleEn={english.projectsHeader.title}
           subtitleEn={english.projectsHeader.subtitle}
         />
-
-        <div className="mt-7 grid gap-4 sm:mt-8 sm:gap-5 lg:mt-10 md:grid-cols-2">
+        <div className={`mt-7 grid gap-4 sm:mt-8 sm:gap-5 lg:mt-10 ${isShowcase ? "lg:grid-cols-3" : "md:grid-cols-2"}`}>
           {content.projects.map((project, index) => {
             const projectEn = english.projects[index];
             const projectName = `${project.name} ${projectEn?.name || ""}`;
-            const projectStatus = `${project.status} ${projectEn?.status || ""}`;
             const isIcpcChallenge = projectName.includes("ICPC 2026");
             const isAttendanceSuite =
               projectName.includes("نظام إدارة دوام الموظفين") || projectName.includes("Employee Attendance");
-            const isFeatured =
-              isAttendanceSuite ||
-              isIcpcChallenge ||
-              projectStatus.includes("مميز") ||
-              projectStatus.toLowerCase().includes("featured");
 
             return (
               <article
                 key={`${project.name}-${index}`}
-                className={`group relative flex h-full flex-col overflow-hidden rounded-[1.45rem] border p-5 transition duration-300 sm:p-6 ${
-                  isFeatured
-                    ? "border-cyanBrand/25 bg-[linear-gradient(180deg,rgba(34,211,238,0.055),rgba(255,255,255,0.022))] shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_16px_44px_rgba(0,0,0,0.14)] hover:-translate-y-1 hover:border-cyanBrand/40"
-                    : "border-white/[0.09] bg-white/[0.025] hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-white/[0.035]"
-                }`}
+                className="repo-card group flex h-full flex-col rounded-3xl p-5 transition hover:-translate-y-1 hover:border-violetBrand/50 sm:p-6"
               >
-                {isFeatured ? (
-                  <div aria-hidden="true" className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/60 to-transparent" />
-                ) : null}
-
-                <div className="relative flex items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <div className="mb-2 flex items-center gap-2 text-[0.64rem] font-black uppercase tracking-[0.1em] text-slate-500">
-                      <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-                      <span className="h-px w-5 bg-white/10" />
-                      {isFeatured ? (
-                        <span className="inline-flex items-center gap-1 text-cyan-300/90">
-                          <Sparkles className="h-3 w-3" />
-                          <LocalizedText ar="عمل بارز" en="Selected work" />
-                        </span>
-                      ) : (
-                        <span><LocalizedText ar="مشروع" en="Project" /></span>
-                      )}
-                    </div>
-
-                    <h3 className={`font-black leading-7 text-white ${isFeatured ? "text-xl sm:text-[1.35rem]" : "text-lg sm:text-xl"}`}>
-                      <LocalizedText ar={project.name} en={projectEn?.name || project.name} />
-                    </h3>
-                  </div>
-
-                  <span
-                    className={`shrink-0 rounded-full border px-2.5 py-1 text-[0.68rem] font-bold ${
-                      isFeatured
-                        ? "border-cyan-300/20 bg-cyan-300/[0.08] text-cyan-100"
-                        : "border-white/10 bg-white/[0.035] text-slate-300"
-                    }`}
-                  >
+                <div className="flex items-start justify-between gap-3 sm:gap-4">
+                  <h3 className="text-lg font-black leading-7 text-white sm:text-xl">
+                    <LocalizedText ar={project.name} en={projectEn?.name || project.name} />
+                  </h3>
+                  <span className="repo-chip shrink-0 px-3 py-1 text-xs font-semibold text-violet-100">
                     <LocalizedText ar={project.status} en={projectEn?.status || project.status} />
                   </span>
                 </div>
 
-                <p
-                  className={`relative mt-3 text-sm text-slate-300/90 sm:mt-4 sm:text-[0.95rem] ${
-                    isAttendanceSuite ? "line-clamp-3 leading-7" : "leading-7"
-                  }`}
-                >
+                <p className={`mt-3 text-slate-300/95 sm:mt-4 ${isAttendanceSuite ? "line-clamp-3 leading-7" : "leading-7 sm:leading-8"}`}>
                   <LocalizedText ar={project.description} en={projectEn?.description || project.description} />
                 </p>
 
-                <div className="relative mt-4 flex flex-wrap gap-1.5 sm:mt-5">
+                <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
                   {project.stack.map((tech) => (
                     <span
                       key={tech}
-                      dir="ltr"
-                      className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 text-[0.67rem] font-semibold text-slate-300"
+                      className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-semibold text-cyan-100"
                     >
                       {tech}
                     </span>
@@ -125,17 +83,15 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
                 </div>
 
                 {isAttendanceSuite ? (
-                  <div className="relative mt-5 border-t border-white/[0.07] pt-4">
-                    <div className="mb-3 flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-2">
-                        <GitBranch className="h-4 w-4 text-cyanBrand" />
-                        <p className="text-xs font-bold text-slate-100 sm:text-sm">
-                          <LocalizedText ar="أربع معماريات لنفس منطق العمل" en="Four architectures, one business domain" />
-                        </p>
-                      </div>
-                      <span dir="ltr" className="text-[0.62rem] font-black tracking-[0.08em] text-slate-500">4 REPOS</span>
+                  <div className="mt-4 rounded-2xl border border-white/10 bg-black/10 p-3.5">
+                    <div className="mb-2.5 flex items-center justify-between gap-2">
+                      <p className="text-xs font-bold text-white sm:text-sm">
+                        <LocalizedText ar="النسخ على GitHub" en="GitHub implementations" />
+                      </p>
+                      <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2 py-0.5 text-[10px] font-bold text-cyan-100">
+                        4 Repos
+                      </span>
                     </div>
-
                     <div className="grid grid-cols-2 gap-2">
                       {attendanceRepositories.map((repo) => (
                         <a
@@ -143,42 +99,36 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
                           href={repo.href}
                           target="_blank"
                           rel="noreferrer"
-                          className="group/repo flex min-h-10 items-center justify-between gap-2 rounded-xl border border-white/[0.08] bg-white/[0.025] px-2.5 py-2 text-[11px] font-bold leading-4 text-slate-200 transition hover:border-cyanBrand/25 hover:bg-cyanBrand/[0.07] hover:text-white sm:text-xs"
+                          className="flex min-h-10 items-center justify-between gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-2.5 py-2 text-[11px] font-bold leading-4 text-slate-100 transition hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-cyan-50 sm:text-xs"
                         >
                           <span className="min-w-0 truncate">
                             <LocalizedText ar={repo.labelAr} en={repo.labelEn} />
                           </span>
-                          <ArrowUpLeft className="h-3.5 w-3.5 shrink-0 text-slate-500 transition group-hover/repo:-translate-x-0.5 group-hover/repo:-translate-y-0.5 group-hover/repo:text-cyan-300 rtl-icon" />
+                          <span className="shrink-0 text-[10px] font-semibold text-cyan-200">↗</span>
                         </a>
                       ))}
                     </div>
                   </div>
                 ) : isIcpcChallenge ? (
-                  <div className="relative mt-auto flex flex-wrap gap-2.5 border-t border-white/[0.07] pt-5 sm:gap-3">
+                  <div className="mt-5 flex flex-wrap gap-2.5 sm:mt-6 sm:gap-3">
                     <a
                       href="https://github.com/ahmed2qaid/edge-cloud-collaborative-scheduling"
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/20 bg-cyan-300/[0.07] px-3.5 py-2 text-xs font-bold text-cyan-100 transition hover:border-cyan-300/35 hover:bg-cyan-300/[0.11]"
+                      className="rounded-xl border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100 transition hover:bg-cyan-300/20"
                     >
                       <LocalizedText ar="الكود على GitHub" en="GitHub Repository" />
-                      <ArrowUpLeft className="h-3.5 w-3.5 rtl-icon" />
                     </a>
                     <a
                       href="https://codeforces.com/contest/2251/problem/A"
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2 text-xs font-bold text-slate-200 transition hover:border-white/20 hover:bg-white/[0.05]"
+                      className="rounded-xl border border-violet-300/30 bg-violet-300/10 px-4 py-2 text-sm font-bold text-violet-100 transition hover:bg-violet-300/20"
                     >
                       <LocalizedText ar="صفحة المسألة" en="Codeforces Problem" />
-                      <ArrowUpLeft className="h-3.5 w-3.5 rtl-icon" />
                     </a>
                   </div>
-                ) : (
-                  <div className="relative mt-auto pt-5">
-                    <div className="h-px bg-white/[0.055]" />
-                  </div>
-                )}
+                ) : null}
               </article>
             );
           })}
