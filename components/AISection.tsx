@@ -13,11 +13,21 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
   const ai = content.ai;
   const english = contentEn.ai;
   const isCompact = layoutVariant === "compact";
+  const isShowcase = layoutVariant === "showcase";
 
   return (
-    <section id="assistant" className={isCompact ? "py-9 sm:py-10 lg:py-12" : "py-10 sm:py-12 lg:py-16"}>
-      <div className="container-shell grid gap-5 sm:gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-8">
-        <div>
+    <section
+      id="assistant"
+      className={`relative overflow-hidden ${isCompact ? "py-10 sm:py-12 lg:py-14" : "py-12 sm:py-14 lg:py-20"}`}
+    >
+      <div className="absolute inset-0 -z-10 bg-grid bg-[size:36px_36px] opacity-40" />
+
+      <div
+        className={`container-shell grid items-center gap-8 sm:gap-10 xl:gap-12 ${
+          isShowcase ? "xl:grid-cols-[0.85fr_1.15fr]" : "xl:grid-cols-[1.1fr_0.9fr]"
+        }`}
+      >
+        <div className={isShowcase ? "order-2 xl:order-1" : ""}>
           <SectionHeader
             kicker={ai.kicker}
             title={ai.title}
@@ -26,14 +36,18 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
             titleEn={english.title}
             subtitleEn={english.subtitle}
           />
-          <div className="mt-5 flex gap-3 sm:mt-6 lg:mt-7">
+          <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
             <a href="#chat" className="btn-primary">
               <LocalizedText ar={ai.primaryCta} en={english.primaryCta} />
             </a>
           </div>
         </div>
 
-        <div className="relative mx-auto h-auto w-full max-w-[520px] self-start lg:mx-0">
+        <div
+          className={`relative mx-auto h-auto w-full max-w-[520px] self-start xl:self-center ${
+            isShowcase ? "order-1 xl:order-2" : ""
+          }`}
+        >
           <div className="pointer-events-none absolute -left-8 -top-8 h-28 w-28 rounded-full bg-cyanBrand/15 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-violetBrand/15 blur-3xl" />
 
@@ -92,7 +106,9 @@ export function AISection({ content, contentEn, layoutVariant }: AISectionProps)
             </div>
 
             <div className="relative mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3 text-[0.62rem] font-semibold text-slate-500">
-              <span><LocalizedText ar="جمع المتطلبات · تنظيم الطلب" en="Requirements intake · Structured brief" /></span>
+              <span>
+                <LocalizedText ar="جمع المتطلبات · تنظيم الطلب" en="Requirements intake · Structured brief" />
+              </span>
               <span className="h-1.5 w-1.5 rounded-full bg-violetBrand shadow-[0_0_12px_var(--accent-2)]" />
             </div>
           </div>
