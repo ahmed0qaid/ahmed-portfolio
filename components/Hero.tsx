@@ -3,8 +3,6 @@ import {
   BrainCircuit,
   Database,
   Download,
-  Github,
-  Linkedin,
   Server,
   Smartphone,
   Sparkles,
@@ -90,35 +88,6 @@ export function Hero({ cvDownloadEnabled, content, contentEn, layoutVariant }: H
                 <Download className="h-4 w-4" /> <LocalizedText ar={hero.cvCta} en={english.hero.cvCta} />
               </a>
             ) : null}
-          </div>
-
-          <div className="mt-5 flex items-center gap-2.5 sm:mt-6" aria-label="Social profiles">
-            <a
-              href="https://github.com/ahmed2qaid"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              title="GitHub"
-              className="group relative grid h-11 w-11 place-items-center rounded-xl border border-white/[0.10] bg-white/[0.035] text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_8px_24px_rgba(0,0,0,0.16)] transition duration-300 hover:-translate-y-1 hover:border-cyanBrand/35 hover:bg-cyanBrand/[0.09] hover:text-cyan-100 hover:shadow-[0_0_28px_rgba(34,211,238,0.13)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyanBrand/60"
-            >
-              <Github className="h-[1.15rem] w-[1.15rem]" />
-              <span className="pointer-events-none absolute bottom-full mb-2 rounded-md border border-white/[0.08] bg-slate-950/95 px-2 py-1 text-[0.65rem] font-bold text-slate-200 opacity-0 shadow-xl transition duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
-                GitHub
-              </span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/ahmed-qaid-18171b3b4"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              title="LinkedIn"
-              className="group relative grid h-11 w-11 place-items-center rounded-xl border border-white/[0.10] bg-white/[0.035] text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_8px_24px_rgba(0,0,0,0.16)] transition duration-300 hover:-translate-y-1 hover:border-sky-400/40 hover:bg-sky-400/[0.09] hover:text-sky-100 hover:shadow-[0_0_28px_rgba(56,189,248,0.13)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60"
-            >
-              <Linkedin className="h-[1.15rem] w-[1.15rem]" />
-              <span className="pointer-events-none absolute bottom-full mb-2 rounded-md border border-white/[0.08] bg-slate-950/95 px-2 py-1 text-[0.65rem] font-bold text-slate-200 opacity-0 shadow-xl transition duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
-                LinkedIn
-              </span>
-            </a>
           </div>
         </div>
 
