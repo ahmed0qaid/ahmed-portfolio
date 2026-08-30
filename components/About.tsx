@@ -63,15 +63,9 @@ export function About({ content, contentEn, layoutVariant }: AboutProps) {
           subtitleEn={english.subtitle}
         />
 
-        <div className="relative mx-auto w-full max-w-[760px]">
-          <div className="pointer-events-none absolute -left-8 -top-8 h-28 w-28 rounded-full bg-cyanBrand/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-violetBrand/10 blur-3xl" />
-
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-white/[0.12] bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.018))] p-5 leading-8 text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_18px_55px_rgba(0,0,0,0.18)] backdrop-blur-[18px] sm:p-6 lg:p-7">
-            <div aria-hidden="true" className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/50 to-transparent" />
-            <div aria-hidden="true" className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-cyanBrand/[0.045] blur-3xl" />
-
-            <div className="relative max-w-3xl">
+        <div className="mx-auto w-full max-w-[760px]">
+          <div className="repo-card rounded-[2rem] p-5 leading-8 text-slate-300 sm:p-6 lg:p-7">
+            <div className="max-w-3xl">
               {about.paragraphs.map((paragraph, index) => (
                 <p key={`${paragraph}-${index}`} className="mt-4 first:mt-0 sm:mt-5">
                   <LocalizedText ar={paragraph} en={english.paragraphs[index] || paragraph} />
@@ -80,7 +74,7 @@ export function About({ content, contentEn, layoutVariant }: AboutProps) {
             </div>
 
             {about.stats.length ? (
-              <div className="relative mt-6 border-t border-white/[0.06] pt-5 sm:mt-7 sm:pt-6">
+              <div className="mt-6 border-t border-white/[0.07] pt-5 sm:mt-7 sm:pt-6">
                 <div className={`grid gap-3 sm:gap-4 ${statsGridClass}`}>
                   {about.stats.map((stat, index) => (
                     <div
