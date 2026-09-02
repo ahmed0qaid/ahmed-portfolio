@@ -1,3 +1,4 @@
+import { ExternalLink, Github, Linkedin } from "lucide-react";
 import type { LayoutVariant, SiteContent } from "@/lib/site-content";
 import { LocalizedText } from "./LocalizedText";
 import { SectionHeader } from "./SectionHeader";
@@ -7,6 +8,9 @@ type AboutProps = {
   contentEn: SiteContent;
   layoutVariant: LayoutVariant;
 };
+
+const LINKEDIN_URL = "https://ye.linkedin.com/in/ahmed-qaid-18171b3b4";
+const GITHUB_URL = "https://github.com/ahmed0qaid";
 
 function StatValue({ value }: { value: string }) {
   const parts = value.split("|").map((part) => part.trim()).filter(Boolean);
@@ -39,6 +43,52 @@ function StatValue({ value }: { value: string }) {
   );
 }
 
+function AboutSocialLinks() {
+  return (
+    <div className="mt-5 grid grid-cols-2 gap-3 sm:mt-6 lg:mt-8">
+      <a
+        href={LINKEDIN_URL}
+        target="_blank"
+        rel="noreferrer noopener"
+        className="group flex min-h-[86px] items-center gap-3 rounded-2xl border border-[#0a66c2]/30 bg-[#0a66c2]/10 p-3.5 transition duration-300 hover:-translate-y-0.5 hover:border-[#4da3f5]/60 hover:bg-[#0a66c2]/15 sm:p-4"
+        aria-label="Ahmed Qaid LinkedIn profile"
+      >
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#0a66c2] text-white sm:h-11 sm:w-11">
+          <Linkedin className="h-5 w-5 sm:h-6 sm:w-6" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#79b8f3]">LinkedIn</span>
+          <span className="mt-1 block truncate text-sm font-bold text-white">Ahmed Qaid</span>
+          <span className="mt-0.5 block text-[0.68rem] leading-4 text-slate-400">
+            <LocalizedText ar="الملف المهني" en="Professional profile" />
+          </span>
+        </span>
+        <ExternalLink className="h-4 w-4 shrink-0 text-[#79b8f3] transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      </a>
+
+      <a
+        href={GITHUB_URL}
+        target="_blank"
+        rel="noreferrer noopener"
+        className="group flex min-h-[86px] items-center gap-3 rounded-2xl border border-white/[0.12] bg-white/[0.045] p-3.5 transition duration-300 hover:-translate-y-0.5 hover:border-cyanBrand/35 hover:bg-white/[0.065] sm:p-4"
+        aria-label="Ahmed Qaid GitHub profile"
+      >
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-slate-950 sm:h-11 sm:w-11">
+          <Github className="h-5 w-5 sm:h-6 sm:w-6" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-slate-300">GitHub</span>
+          <span className="mt-1 block truncate text-sm font-bold text-white">ahmed0qaid</span>
+          <span className="mt-0.5 block text-[0.68rem] leading-4 text-slate-400">
+            <LocalizedText ar="المشاريع والكود" en="Projects & code" />
+          </span>
+        </span>
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cyanBrand" />
+      </a>
+    </div>
+  );
+}
+
 export function About({ content, contentEn, layoutVariant }: AboutProps) {
   const about = content.about;
   const english = contentEn.about;
@@ -54,14 +104,17 @@ export function About({ content, contentEn, layoutVariant }: AboutProps) {
   return (
     <section id="about" className={isCompact ? "py-9 sm:py-10 lg:py-12" : "py-10 sm:py-12 lg:py-16"}>
       <div className="container-shell grid items-start gap-6 sm:gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
-        <SectionHeader
-          kicker={about.kicker}
-          title={about.title}
-          subtitle={about.subtitle}
-          kickerEn={english.kicker}
-          titleEn={english.title}
-          subtitleEn={english.subtitle}
-        />
+        <div>
+          <SectionHeader
+            kicker={about.kicker}
+            title={about.title}
+            subtitle={about.subtitle}
+            kickerEn={english.kicker}
+            titleEn={english.title}
+            subtitleEn={english.subtitle}
+          />
+          <AboutSocialLinks />
+        </div>
 
         <div className="mx-auto w-full max-w-[760px]">
           <div className="repo-card rounded-[2rem] p-5 leading-8 text-slate-300 sm:p-6 lg:p-7">
