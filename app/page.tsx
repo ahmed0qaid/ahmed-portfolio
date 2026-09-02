@@ -79,7 +79,7 @@ export default async function Home() {
       description:
         "أبني أنظمة خلفية وسحابية موثوقة، من REST APIs وقواعد البيانات إلى التنفيذ المتين، الأتمتة المحكومة بالسياسات، المراقبة، وبنية MCP وAI Agents.",
       focusKicker: "تركيزي الحالي",
-      focusTitle: "Backend · Cloud · Platform",
+      focusTitle: "باك إند · سحابة · منصات",
       focusItems: [
         "هندسة الباك اند وواجهات REST APIs",
         "هندسة السحابة والمنصات وقواعد البيانات",
