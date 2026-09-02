@@ -24,7 +24,7 @@ export default async function Home() {
     status: "مشارك",
     stack: ["C++20", "Algorithms", "Scheduling", "Optimization", "Edge/Cloud"],
     description:
-      "عمل هندسي ضمن ICPC 2026 Online Challenge 1 powered by Huawei على مسألة Edge–Cloud Collaborative Scheduling، مع تطوير وتحسين حل C++ يغطي التجميع الديناميكي، تخصيص الموارد، موازنة زمن الاستجابة ومعدل الإنتاج، والجدولة المراعية لـ SLO.",
+      "شاركت في ICPC 2026 Online Challenge 1 powered by Huawei وعملت على مسألة Edge–Cloud Collaborative Scheduling، وطورت حلًا بلغة C++ شمل التجميع الديناميكي، تخصيص الموارد، موازنة زمن الاستجابة ومعدل الإنتاج، والجدولة المراعية لـ SLO.",
   };
 
   const challengeEn = {
@@ -32,7 +32,7 @@ export default async function Home() {
     status: "Participant",
     stack: ["C++20", "Algorithms", "Scheduling", "Optimization", "Edge/Cloud"],
     description:
-      "Engineering work for ICPC 2026 Online Challenge 1 powered by Huawei on Edge–Cloud Collaborative Scheduling, with an iterative C++ solution covering dynamic batching, resource allocation, latency/throughput trade-offs, and SLO-aware scheduling.",
+      "Participated in ICPC 2026 Online Challenge 1 powered by Huawei and worked on Edge–Cloud Collaborative Scheduling, developing an iterative C++ solution covering dynamic batching, resource allocation, latency/throughput trade-offs, and SLO-aware scheduling.",
   };
 
   const attendanceAr = {
@@ -40,7 +40,7 @@ export default async function Home() {
     status: "مشروع تطبيقي",
     stack: ["Next.js", "Flutter", "Laravel", "Supabase", "PostgreSQL", "Business Logic"],
     description:
-      "نظام أعمال لإدارة الحضور والورديات وقواعد التأخير والانصراف والغياب والسجلات المعلقة، مع تنفيذ نفس منطق العمل بعدة معماريات مستقلة للمقارنة بين تطبيقات الويب والموبايل والباك اند.",
+      "طورت نظامًا لإدارة الحضور والورديات وقواعد التأخير والانصراف والغياب والسجلات المعلقة، ونفذت منطق العمل نفسه بعدة معماريات مستقلة باستخدام تقنيات ويب وموبايل وباك اند مختلفة.",
   };
 
   const attendanceEn = {
@@ -48,7 +48,7 @@ export default async function Home() {
     status: "Applied Project",
     stack: ["Next.js", "Flutter", "Laravel", "Supabase", "PostgreSQL", "Business Logic"],
     description:
-      "A business workflow system for attendance, rotating shifts, lateness, early departure, absences, pending records, and overtime, implemented across multiple independent architectures to compare web, mobile, and backend approaches.",
+      "Built a business workflow system for attendance, rotating shifts, lateness, early departure, absences, pending records, and overtime, implementing the same business logic across multiple web, mobile, and backend architectures.",
   };
 
   const projectsWithChallengeAr = content.projects.some((project) => project.name.includes("ICPC 2026"))
@@ -82,8 +82,8 @@ export default async function Home() {
       badge: "Backend · Cloud · Platform · AI Infrastructure",
       highlightedTitle: "مهندس Backend & Cloud",
       description:
-        "أركز على بناء أنظمة قابلة للاختبار والنشر والمراقبة والاستعادة: من REST APIs وقواعد البيانات إلى التنفيذ المتين، الأتمتة المحكومة بالسياسات، المراقبة، وMCP/AI infrastructure.",
-      focusKicker: "التركيز الهندسي",
+        "أبني أنظمة خلفية وسحابية موثوقة، من REST APIs وقواعد البيانات إلى التنفيذ المتين، الأتمتة المحكومة بالسياسات، المراقبة، وبنية MCP وAI Agents.",
+      focusKicker: "تركيزي الحالي",
       focusTitle: "Backend · Cloud · Platform",
       focusItems: [
         "هندسة الباك اند وواجهات REST APIs",
@@ -96,50 +96,50 @@ export default async function Home() {
     about: {
       ...content.about,
       kicker: "نبذة",
-      title: "هوية هندسية واضحة",
+      title: "نبذة عني",
       subtitle:
-        "تركيزي المهني هو Backend & Cloud Software Engineering، مع امتداد إلى Platform Engineering والأنظمة الموزعة والأتمتة والبنية التحتية للذكاء الاصطناعي.",
+        "أركز على Backend & Cloud Software Engineering، مع اهتمام بهندسة المنصات والأنظمة الموزعة والأتمتة والبنية التحتية للذكاء الاصطناعي.",
       paragraphs: [
-        "أبني أنظمة برمجية عملية تبدأ من المتطلبات وتنتهي بتطبيق قابل للنشر والصيانة. خبرتي تشمل REST APIs، SQL وقواعد البيانات العلائقية، PostgreSQL، Laravel وFastAPI، Docker وCI/CD، إضافة إلى تطوير ودعم أنظمة أعمال حقيقية وتحسينها بشكل مستمر.",
-        "المشاريع الأحدث في GitHub تركز على هندسة الأنظمة أكثر من مجرد واجهات التطبيقات: تنفيذ متين وقابل للاستعادة، سياسات وموافقات للأتمتة، MCP gateways، تتبع التنفيذ باستخدام OpenTelemetry، وتكاملات AI Agents. هدفي هو بناء برمجيات structured, testable, deployable, observable, resilient وآمنة عند التعامل مع side effects.",
+        "أبني أنظمة برمجية تبدأ من فهم المتطلبات وتنتهي بتطبيق قابل للنشر والصيانة. أعمل على REST APIs، SQL وقواعد البيانات العلائقية، PostgreSQL، Laravel وFastAPI، Docker وCI/CD، ولدي خبرة عملية في تطوير ودعم أنظمة أعمال وتحسينها بشكل مستمر.",
+        "في مشاريعي أعمل على التنفيذ المتين والقابل للاستعادة، الأتمتة المحكومة بالسياسات والموافقات، MCP gateways، تتبع التنفيذ باستخدام OpenTelemetry، وتكاملات AI Agents. أهتم بأن يكون الكود منظمًا، قابلًا للاختبار والنشر والمراقبة، ويتعامل مع الأعطال والعمليات الخارجية بصورة آمنة.",
       ],
       stats: [
         { value: "Backend + Cloud", label: "التركيز الأساسي" },
-        { value: "Platform + Distributed", label: "هندسة الأنظمة والمنصات" },
-        { value: "Automation + AI Infra", label: "الأتمتة والبنية التحتية للذكاء الاصطناعي" },
+        { value: "Platform + Distributed", label: "الأنظمة والمنصات" },
+        { value: "Automation + AI Infra", label: "الأتمتة وبنية الذكاء الاصطناعي" },
       ],
     },
     servicesHeader: {
       ...content.servicesHeader,
-      kicker: "القدرات",
-      title: "ما الذي أبنيه؟",
+      kicker: "مجالات العمل",
+      title: "ما أعمل عليه",
       subtitle:
-        "حلول Backend وCloud وPlatform تشمل APIs وقواعد البيانات والأتمتة والتكاملات والمراقبة والبنية التحتية لتطبيقات الذكاء الاصطناعي.",
+        "Backend وCloud وPlatform Engineering، مع APIs وقواعد البيانات والأتمتة والتكاملات والمراقبة وبنية تطبيقات الذكاء الاصطناعي.",
     },
     skillsHeader: {
       ...content.skillsHeader,
       kicker: "المهارات",
-      title: "القدرات التقنية",
+      title: "التقنيات التي أستخدمها",
       subtitle:
-        "تقنيات أستخدمها لبناء أنظمة خلفية وسحابية قابلة للاختبار والنشر والمراقبة والاستعادة، وليس مجرد واجهات تطبيقات.",
+        "مجموعة التقنيات والأدوات التي أعتمد عليها في بناء الأنظمة الخلفية والسحابية والمنصات والأتمتة.",
     },
     projectsHeader: {
       ...content.projectsHeader,
-      kicker: "GitHub Engineering",
-      title: "مشاريع هندسية مختارة",
+      kicker: "المشاريع",
+      title: "مشاريع مختارة",
       subtitle:
-        "المشاريع الأقوى التي تعكس هويتي الحالية في Backend وCloud وDistributed Systems وAutomation وAI Infrastructure، مع روابط مباشرة إلى المستودعات.",
+        "نماذج من عملي في Backend وCloud والأنظمة الموزعة والأتمتة والبنية التحتية للذكاء الاصطناعي.",
     },
     projects: projectsAr,
     contact: {
       ...content.contact,
       kicker: "تواصل",
-      title: "لنتحدث عن فرصة أو مشروع هندسي",
-      subtitle: "يمكنك الوصول إلى GitHub وLinkedIn أو التواصل مباشرة لمناقشة وظيفة، تعاون، أو مشروع تقني.",
+      title: "لنتواصل",
+      subtitle: "للفرص المهنية أو التعاون أو مناقشة مشروع تقني، يمكنك التواصل معي مباشرة أو زيارة GitHub وLinkedIn.",
     },
     footer: {
       ...content.footer,
-      text: "© 2026 أحمد شوقي محمد قائد · Backend & Cloud Software Engineering Portfolio.",
+      text: "© 2026 أحمد شوقي محمد قائد · Backend & Cloud Software Engineer.",
     },
   };
 
@@ -158,8 +158,8 @@ export default async function Home() {
       badge: "Backend · Cloud · Platform · AI Infrastructure",
       highlightedTitle: "Backend & Cloud Engineer",
       description:
-        "I focus on systems that are testable, deployable, observable, and recoverable: from REST APIs and databases to durable execution, policy-controlled automation, observability, and MCP/AI infrastructure.",
-      focusKicker: "ENGINEERING FOCUS",
+        "I build reliable backend and cloud systems, from REST APIs and databases to durable execution, policy-controlled automation, observability, and MCP/AI-agent infrastructure.",
+      focusKicker: "CURRENT FOCUS",
       focusTitle: "Backend · Cloud · Platform",
       focusItems: [
         "Backend engineering and REST APIs",
@@ -172,50 +172,50 @@ export default async function Home() {
     about: {
       ...contentEn.about,
       kicker: "About",
-      title: "A Clear Engineering Identity",
+      title: "About Me",
       subtitle:
-        "My primary focus is Backend & Cloud Software Engineering, extending into platform engineering, distributed systems, automation, and AI infrastructure.",
+        "I focus on Backend & Cloud Software Engineering, with interests in platform engineering, distributed systems, automation, and AI infrastructure.",
       paragraphs: [
-        "I build practical software systems from requirements through deployment and maintenance. My experience spans REST APIs, SQL and relational data modeling, PostgreSQL, Laravel and FastAPI, Docker and CI/CD, together with hands-on delivery and support of real business systems.",
-        "My newer GitHub work focuses on systems engineering rather than only application UI: durable and recoverable execution, policy-controlled automation, MCP gateways, OpenTelemetry-based tracing, and AI-agent integrations. I aim to build software that is structured, testable, deployable, observable, resilient, and safe around side effects.",
+        "I build software systems from requirements through deployment and maintenance. I work with REST APIs, SQL and relational data modeling, PostgreSQL, Laravel and FastAPI, Docker and CI/CD, with hands-on experience developing, supporting, and continuously improving real business systems.",
+        "My projects include durable and recoverable execution, policy-controlled automation and approvals, MCP gateways, OpenTelemetry-based tracing, and AI-agent integrations. I care about software that is structured, testable, deployable, observable, resilient, and safe around external side effects.",
       ],
       stats: [
         { value: "Backend + Cloud", label: "Primary Focus" },
-        { value: "Platform + Distributed", label: "Systems & Platform Engineering" },
+        { value: "Platform + Distributed", label: "Systems & Platforms" },
         { value: "Automation + AI Infra", label: "Automation & AI Infrastructure" },
       ],
     },
     servicesHeader: {
       ...contentEn.servicesHeader,
-      kicker: "Capabilities",
-      title: "What I Build",
+      kicker: "Work Areas",
+      title: "What I Work On",
       subtitle:
-        "Backend, cloud, and platform solutions spanning APIs, databases, automation, integrations, observability, and AI infrastructure.",
+        "Backend, cloud, and platform engineering across APIs, databases, automation, integrations, observability, and AI infrastructure.",
     },
     skillsHeader: {
       ...contentEn.skillsHeader,
       kicker: "Skills",
-      title: "Engineering Capabilities",
+      title: "Technologies I Use",
       subtitle:
-        "Technologies I use to build backend and cloud systems that are testable, deployable, observable, and recoverable—not just application interfaces.",
+        "The technologies and tools I use across backend systems, cloud platforms, distributed systems, automation, and AI infrastructure.",
     },
     projectsHeader: {
       ...contentEn.projectsHeader,
-      kicker: "GitHub Engineering",
-      title: "Selected Engineering Projects",
+      kicker: "Projects",
+      title: "Selected Projects",
       subtitle:
-        "The strongest projects reflecting my current identity across backend, cloud, distributed systems, automation, and AI infrastructure, with direct repository links.",
+        "A selection of my work across backend, cloud, distributed systems, automation, and AI infrastructure.",
     },
     projects: projectsEn,
     contact: {
       ...contentEn.contact,
       kicker: "Contact",
-      title: "Let's Discuss an Engineering Opportunity",
-      subtitle: "Explore GitHub and LinkedIn or contact me directly about a role, collaboration, or technical project.",
+      title: "Get in Touch",
+      subtitle: "For professional opportunities, collaboration, or a technical project, contact me directly or visit my GitHub and LinkedIn.",
     },
     footer: {
       ...contentEn.footer,
-      text: "© 2026 AHMED SHAWQI MOHAMMED QAID · Backend & Cloud Software Engineering Portfolio.",
+      text: "© 2026 AHMED SHAWQI MOHAMMED QAID · Backend & Cloud Software Engineer.",
     },
   };
 
