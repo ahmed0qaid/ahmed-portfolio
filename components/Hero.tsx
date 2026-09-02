@@ -96,28 +96,29 @@ export function Hero({ cvDownloadEnabled, content, contentEn, layoutVariant }: H
               <div aria-hidden="true" className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/55 to-transparent" />
               <div aria-hidden="true" className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-cyanBrand/[0.07] blur-3xl" />
 
-              <div className="relative flex items-start justify-between gap-3">
-                <div className="flex min-w-0 items-start gap-3">
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-cyanBrand/20 bg-cyanBrand/10 text-cyanBrand shadow-[0_8px_24px_rgba(0,0,0,0.16)]">
-                    <BrainCircuit className="h-5 w-5" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[0.7rem] font-bold tracking-wide text-cyanBrand">
+              <div className="relative">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex min-w-0 items-start gap-3">
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-cyanBrand/20 bg-cyanBrand/10 text-cyanBrand shadow-[0_8px_24px_rgba(0,0,0,0.16)]">
+                      <BrainCircuit className="h-5 w-5" />
+                    </div>
+                    <p className="pt-0.5 text-[0.7rem] font-bold tracking-wide text-cyanBrand">
                       <LocalizedText ar={hero.focusKicker} en={english.hero.focusKicker} />
                     </p>
-                    <h2 className="mt-1 text-xl font-black leading-tight text-white sm:text-2xl">
-                      <LocalizedText ar={hero.focusTitle} en={english.hero.focusTitle} />
-                    </h2>
+                  </div>
+
+                  <div className="mt-0.5 flex shrink-0 items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.035] px-2.5 py-1.5">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyanBrand opacity-35" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyanBrand" />
+                    </span>
+                    <span className="text-[0.58rem] font-bold uppercase tracking-[0.12em] text-slate-500">Engineering</span>
                   </div>
                 </div>
 
-                <div className="mt-0.5 flex shrink-0 items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.035] px-2.5 py-1.5">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyanBrand opacity-35" />
-                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyanBrand" />
-                  </span>
-                  <span className="text-[0.58rem] font-bold uppercase tracking-[0.12em] text-slate-500">Engineering</span>
-                </div>
+                <h2 dir="ltr" className="mt-3 w-full whitespace-nowrap text-left text-[1.28rem] font-black leading-tight tracking-[-0.025em] text-white sm:text-[1.55rem] lg:text-[1.62rem]">
+                  <LocalizedText ar={hero.focusTitle} en={english.hero.focusTitle} />
+                </h2>
               </div>
 
               <div className="relative mt-4 space-y-2.5">
