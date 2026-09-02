@@ -1,4 +1,4 @@
-import { ExternalLink, Link as LinkIcon, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ExternalLink, Github, Link as LinkIcon, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import type { ContactItemContent, LayoutVariant, SiteContent } from "@/lib/site-content";
 import { LocalizedText } from "./LocalizedText";
 import { SectionHeader } from "./SectionHeader";
@@ -12,6 +12,7 @@ type ContactProps = {
 };
 
 const LINKEDIN_URL = "https://ye.linkedin.com/in/ahmed-qaid-18171b3b4";
+const GITHUB_URL = "https://github.com/ahmed0qaid";
 
 export function buildWhatsAppUrl(number: string, message: string) {
   const digits = number.replace(/\D/g, "");
@@ -116,29 +117,49 @@ function ContactCard({ content, contentEn, item }: { content: SiteContent; conte
   return <div className={cardClass}>{contentNode}</div>;
 }
 
-function LinkedInProfileCard() {
+function SocialProfileCards() {
   return (
-    <a
-      href={LINKEDIN_URL}
-      target="_blank"
-      rel="noreferrer noopener"
-      className="group mt-3 flex items-center gap-3 rounded-2xl border border-[#0a66c2]/30 bg-[#0a66c2]/10 p-3.5 transition hover:-translate-y-0.5 hover:border-[#4da3f5]/60 hover:bg-[#0a66c2]/15 sm:mt-4 sm:gap-4 sm:p-4"
-      aria-label="Ahmed Qaid LinkedIn profile"
-    >
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#0a66c2] text-white shadow-lg shadow-[#0a66c2]/20 sm:h-12 sm:w-12">
-        <Linkedin className="h-6 w-6" />
-      </span>
-
-      <span className="min-w-0 flex-1">
-        <span className="block text-xs font-medium uppercase tracking-[0.18em] text-[#79b8f3]">LinkedIn</span>
-        <span className="mt-1 block truncate text-sm font-bold text-white sm:text-base">Ahmed Qaid</span>
-        <span className="mt-0.5 block text-xs text-slate-400 sm:text-sm">
-          <LocalizedText ar="عرض الملف المهني والتواصل عبر لينكدإن" en="View my professional profile and connect on LinkedIn" />
+    <div className="mt-3 grid grid-cols-1 gap-3 sm:mt-4 sm:grid-cols-2 sm:gap-4">
+      <a
+        href={LINKEDIN_URL}
+        target="_blank"
+        rel="noreferrer noopener"
+        className="group flex h-full items-center gap-3 rounded-2xl border border-[#0a66c2]/30 bg-[#0a66c2]/10 p-3.5 transition hover:-translate-y-0.5 hover:border-[#4da3f5]/60 hover:bg-[#0a66c2]/15 sm:gap-4 sm:p-4"
+        aria-label="Ahmed Qaid LinkedIn profile"
+      >
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#0a66c2] text-white shadow-lg shadow-[#0a66c2]/20 sm:h-12 sm:w-12">
+          <Linkedin className="h-6 w-6" />
         </span>
-      </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-xs font-medium uppercase tracking-[0.18em] text-[#79b8f3]">LinkedIn</span>
+          <span className="mt-1 block truncate text-sm font-bold text-white sm:text-base">Ahmed Qaid</span>
+          <span className="mt-0.5 block text-xs text-slate-400 sm:text-sm">
+            <LocalizedText ar="عرض الملف المهني والتواصل" en="View my professional profile and connect" />
+          </span>
+        </span>
+        <ExternalLink className="h-5 w-5 shrink-0 text-[#79b8f3] transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      </a>
 
-      <ExternalLink className="h-5 w-5 shrink-0 text-[#79b8f3] transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-    </a>
+      <a
+        href={GITHUB_URL}
+        target="_blank"
+        rel="noreferrer noopener"
+        className="group flex h-full items-center gap-3 rounded-2xl border border-slate-500/30 bg-slate-500/10 p-3.5 transition hover:-translate-y-0.5 hover:border-slate-300/50 hover:bg-slate-500/15 sm:gap-4 sm:p-4"
+        aria-label="Ahmed Qaid GitHub profile"
+      >
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-white shadow-lg shadow-black/20 sm:h-12 sm:w-12">
+          <Github className="h-6 w-6" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-xs font-medium uppercase tracking-[0.18em] text-slate-300">GitHub</span>
+          <span className="mt-1 block truncate text-sm font-bold text-white sm:text-base">ahmed0qaid</span>
+          <span className="mt-0.5 block text-xs text-slate-400 sm:text-sm">
+            <LocalizedText ar="استعرض مشاريعي ومستودعاتي البرمجية" en="Explore my projects and code repositories" />
+          </span>
+        </span>
+        <ExternalLink className="h-5 w-5 shrink-0 text-slate-300 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      </a>
+    </div>
   );
 }
 
@@ -167,7 +188,7 @@ export function Contact({ content, contentEn, layoutVariant }: ContactProps) {
                 <ContactCard key={item.id} content={content} contentEn={contentEn} item={item} />
               ))}
             </div>
-            <LinkedInProfileCard />
+            <SocialProfileCards />
           </div>
         </div>
       </div>
