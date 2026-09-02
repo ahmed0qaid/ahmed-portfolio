@@ -5,11 +5,11 @@ import { ArrowDown, ArrowUp, LayoutGrid, Loader2, Save, Settings2 } from "lucide
 import type { SiteSettings } from "@/lib/site-settings";
 import {
   defaultSiteControlSettings,
-  featuredProjectKeys,
-  sectionKeys,
+  type CapabilityKey,
   type FeaturedProjectKey,
   type SectionKey,
   type SiteControlSettings,
+  type SkillGroupKey,
 } from "@/lib/site-controls";
 
 const sectionLabels: Record<SectionKey, string> = {
@@ -27,6 +27,24 @@ const projectLabels: Record<FeaturedProjectKey, string> = {
   "mcp-policy-gateway": "MCP Policy Gateway",
   "agenttrace-otel": "AgentTrace OTel",
   reporadar: "RepoRadar AI",
+};
+
+const capabilityLabels: Record<CapabilityKey, string> = {
+  backend: "Backend Engineering & APIs",
+  cloud: "Cloud & Platform Engineering",
+  databases: "Databases & Data Modeling",
+  distributed: "Distributed & Durable Systems",
+  "automation-ai": "Automation & AI Infrastructure",
+  observability: "Observability & Reliability",
+};
+
+const skillLabels: Record<SkillGroupKey, string> = {
+  "backend-systems": "Backend & Systems",
+  "databases-data": "Databases & Data",
+  "cloud-infrastructure": "Cloud & Infrastructure",
+  "distributed-reliability": "Distributed Systems & Reliability",
+  "ai-agent-infrastructure": "AI & Agent Infrastructure",
+  "web-mobile-product": "Web & Mobile Product Engineering",
 };
 
 function Toggle({ label, checked, onChange }: { label: string; checked: boolean; onChange: (value: boolean) => void }) {
@@ -48,27 +66,49 @@ function moveItem<T>(items: T[], index: number, direction: -1 | 1) {
   return next;
 }
 
+function SortList<T extends string>({ title, items, labels, onChange }: { title: string; items: T[]; labels: Record<T, string>; onChange: (items: T[]) => void }) {
+  return (
+    <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-5">
+      <h3 className="font-black text-white">{title}</h3>
+      <div className="mt-4 space-y-2">
+        {items.map((key, index) => (
+          <div key={key} className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3">
+            <span className="min-w-0 truncate font-bold text-slate-200">{index + 1}. {labels[key]}</span>
+            <div className="flex shrink-0 gap-1">
+              <button type="button" onClick={() => onChange(moveItem(items, index, -1))} disabled={index === 0} className="rounded-xl border border-white/10 p-2 text-slate-300 disabled:opacity-30"><ArrowUp className="h-4 w-4" /></button>
+              <button type="button" onClick={() => onChange(moveItem(items, index, 1))} disabled={index === items.length - 1} className="rounded-xl border border-white/10 p-2 text-slate-300 disabled:opacity-30"><ArrowDown className="h-4 w-4" /></button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function DashboardSiteSetupPanel({ adminToken }: { adminToken: string }) {
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
 
-  async function load() {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/settings", { headers: { "x-admin-token": adminToken }, cache: "no-store" });
-      if (!res.ok) throw new Error("تعذر تحميل إعدادات التهيئة.");
-      const data = await res.json();
-      setSettings({ ...data.settings, controls: data.settings.controls || defaultSiteControlSettings });
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "تعذر تحميل الإعدادات.");
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      setLoading(true);
+      try {
+        const res = await fetch("/api/settings", { headers: { "x-admin-token": adminToken }, cache: "no-store" });
+        if (!res.ok) throw new Error("تعذر تحميل إعدادات التهيئة.");
+        const data = await res.json();
+        if (!cancelled) setSettings({ ...data.settings, controls: data.settings.controls || defaultSiteControlSettings });
+      } catch (error) {
+        if (!cancelled) setMessage(error instanceof Error ? error.message : "تعذر تحميل الإعدادات.");
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
     }
-  }
-
-  useEffect(() => { load(); }, [adminToken]);
+    load();
+    return () => { cancelled = true; };
+  }, [adminToken]);
 
   function updateControls(patch: Partial<SiteControlSettings>) {
     setSettings((current) => current ? { ...current, controls: { ...current.controls, ...patch } } : current);
@@ -87,7 +127,7 @@ export function DashboardSiteSetupPanel({ adminToken }: { adminToken: string }) 
       if (!res.ok) throw new Error("تعذر حفظ إعدادات التهيئة.");
       const data = await res.json();
       setSettings(data.settings);
-      setMessage("تم حفظ إعدادات التهيئة والترتيب.");
+      setMessage("تم حفظ إعدادات التهيئة والترتيب. حدّث الصفحة الرئيسية لمشاهدة التغيير.");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "تعذر حفظ الإعدادات.");
     } finally {
@@ -105,44 +145,19 @@ export function DashboardSiteSetupPanel({ adminToken }: { adminToken: string }) 
         <div>
           <p className="section-kicker">Site Setup</p>
           <h2 className="mt-2 text-2xl font-black text-white">تهيئة الموقع وترتيبه</h2>
-          <p className="mt-3 max-w-3xl leading-8 text-slate-300">تحكم في ترتيب الأقسام والبطاقات، عدد الأعمدة، الشريط العلوي، وروابطه، وطريقة فتح المساعد الذكي.</p>
+          <p className="mt-3 max-w-3xl leading-8 text-slate-300">تحكم في ترتيب أقسام الصفحة والبطاقات الرئيسية، عدد الأعمدة، الشريط العلوي، وروابطه، وطريقة فتح المساعد الذكي.</p>
         </div>
         <div className="grid h-12 w-12 place-items-center rounded-2xl bg-cyanBrand/10 text-cyanBrand"><Settings2 className="h-6 w-6" /></div>
       </div>
 
       <div className="mt-7 grid gap-6 xl:grid-cols-2">
-        <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-5">
-          <h3 className="flex items-center gap-2 font-black text-white"><LayoutGrid className="h-4 w-4 text-cyanBrand" /> ترتيب أقسام الصفحة</h3>
-          <div className="mt-4 space-y-2">
-            {controls.sectionOrder.map((key, index) => (
-              <div key={key} className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3">
-                <span className="font-bold text-slate-200">{index + 1}. {sectionLabels[key]}</span>
-                <div className="flex gap-1">
-                  <button onClick={() => updateControls({ sectionOrder: moveItem(controls.sectionOrder, index, -1) })} disabled={index === 0} className="rounded-xl border border-white/10 p-2 text-slate-300 disabled:opacity-30"><ArrowUp className="h-4 w-4" /></button>
-                  <button onClick={() => updateControls({ sectionOrder: moveItem(controls.sectionOrder, index, 1) })} disabled={index === controls.sectionOrder.length - 1} className="rounded-xl border border-white/10 p-2 text-slate-300 disabled:opacity-30"><ArrowDown className="h-4 w-4" /></button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-5">
-          <h3 className="font-black text-white">ترتيب المشاريع الرئيسية</h3>
-          <div className="mt-4 space-y-2">
-            {controls.featuredProjectOrder.map((key, index) => (
-              <div key={key} className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3">
-                <span className="font-bold text-slate-200">{index + 1}. {projectLabels[key]}</span>
-                <div className="flex gap-1">
-                  <button onClick={() => updateControls({ featuredProjectOrder: moveItem(controls.featuredProjectOrder, index, -1) })} disabled={index === 0} className="rounded-xl border border-white/10 p-2 text-slate-300 disabled:opacity-30"><ArrowUp className="h-4 w-4" /></button>
-                  <button onClick={() => updateControls({ featuredProjectOrder: moveItem(controls.featuredProjectOrder, index, 1) })} disabled={index === controls.featuredProjectOrder.length - 1} className="rounded-xl border border-white/10 p-2 text-slate-300 disabled:opacity-30"><ArrowDown className="h-4 w-4" /></button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <SortList title="ترتيب أقسام الصفحة" items={controls.sectionOrder} labels={sectionLabels} onChange={(items) => updateControls({ sectionOrder: items })} />
+        <SortList title="ترتيب المشاريع الرئيسية" items={controls.featuredProjectOrder} labels={projectLabels} onChange={(items) => updateControls({ featuredProjectOrder: items })} />
+        <SortList title="ترتيب بطاقات مجالات العمل" items={controls.capabilityOrder} labels={capabilityLabels} onChange={(items) => updateControls({ capabilityOrder: items })} />
+        <SortList title="ترتيب بطاقات المهارات" items={controls.skillGroupOrder} labels={skillLabels} onChange={(items) => updateControls({ skillGroupOrder: items })} />
       </div>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Toggle label="تثبيت الشريط العلوي" checked={controls.navbarSticky} onChange={(value) => updateControls({ navbarSticky: value })} />
         <Toggle label="إظهار الاسم في الشريط" checked={controls.showNavbarName} onChange={(value) => updateControls({ showNavbarName: value })} />
         <Toggle label="إظهار GitHub وLinkedIn في الشريط" checked={controls.showNavbarSocials} onChange={(value) => updateControls({ showNavbarSocials: value })} />
@@ -158,6 +173,7 @@ export function DashboardSiteSetupPanel({ adminToken }: { adminToken: string }) 
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <button onClick={save} disabled={saving} className="btn-primary gap-2 disabled:opacity-50">{saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} حفظ التهيئة</button>
         <button onClick={() => updateControls(defaultSiteControlSettings)} className="btn-secondary">استعادة الترتيب الافتراضي</button>
+        <a href="/" target="_blank" className="btn-secondary gap-2"><LayoutGrid className="h-4 w-4" /> معاينة الموقع</a>
         {message ? <span className="text-sm text-slate-300">{message}</span> : null}
       </div>
     </section>
