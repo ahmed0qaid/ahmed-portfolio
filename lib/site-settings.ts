@@ -11,6 +11,11 @@ import {
   type ThemeVariant,
 } from "@/lib/site-content";
 import { englishSiteContent } from "@/lib/site-translations";
+import {
+  defaultSiteControlSettings,
+  normalizeSiteControlSettings,
+  type SiteControlSettings,
+} from "@/lib/site-controls";
 
 export type SiteSettings = {
   cvDownloadEnabled: boolean;
@@ -20,6 +25,7 @@ export type SiteSettings = {
   defaultLanguage: SiteLanguage;
   colorRotationEnabled: boolean;
   colorRotationIntervalSeconds: number;
+  controls: SiteControlSettings;
   content: SiteContent;
   contentEn: SiteContent;
 };
@@ -32,6 +38,7 @@ export const defaultSiteSettings: SiteSettings = {
   defaultLanguage: "ar",
   colorRotationEnabled: false,
   colorRotationIntervalSeconds: 10,
+  controls: defaultSiteControlSettings,
   content: defaultSiteContent,
   contentEn: englishSiteContent,
 };
@@ -44,6 +51,7 @@ const SETTING_KEYS = {
   defaultLanguage: "defaultLanguage",
   colorRotationEnabled: "colorRotationEnabled",
   colorRotationIntervalSeconds: "colorRotationIntervalSeconds",
+  siteControls: "siteControls",
   siteContent: "siteContent",
   siteContentEn: "siteContentEn",
 } as const;
@@ -73,7 +81,6 @@ function parseRotationInterval(value: string | undefined): number {
 
 function parseContent(value: string | undefined, fallback: SiteContent): SiteContent {
   if (!value) return fallback;
-
   try {
     return normalizeSiteContent(JSON.parse(value), fallback);
   } catch (error) {
@@ -82,31 +89,32 @@ function parseContent(value: string | undefined, fallback: SiteContent): SiteCon
   }
 }
 
+function parseControls(value: string | undefined): SiteControlSettings {
+  if (!value) return defaultSiteControlSettings;
+  try {
+    return normalizeSiteControlSettings(JSON.parse(value));
+  } catch (error) {
+    console.error("Failed to parse site controls", error);
+    return defaultSiteControlSettings;
+  }
+}
+
 export async function getSiteSettings(): Promise<SiteSettings> {
   try {
     const rows = (await prisma.siteSetting.findMany({
       where: { key: { in: Object.values(SETTING_KEYS) } },
     })) as Array<{ key: string; value: string }>;
-
     const map = new Map<string, string>(rows.map((row) => [row.key, row.value]));
 
     return {
-      cvDownloadEnabled: parseBoolean(
-        map.get(SETTING_KEYS.cvDownloadEnabled),
-        defaultSiteSettings.cvDownloadEnabled,
-      ),
-      whatsappButtonEnabled: parseBoolean(
-        map.get(SETTING_KEYS.whatsappButtonEnabled),
-        defaultSiteSettings.whatsappButtonEnabled,
-      ),
+      cvDownloadEnabled: parseBoolean(map.get(SETTING_KEYS.cvDownloadEnabled), defaultSiteSettings.cvDownloadEnabled),
+      whatsappButtonEnabled: parseBoolean(map.get(SETTING_KEYS.whatsappButtonEnabled), defaultSiteSettings.whatsappButtonEnabled),
       themeVariant: parseTheme(map.get(SETTING_KEYS.themeVariant)),
       layoutVariant: parseLayout(map.get(SETTING_KEYS.layoutVariant)),
       defaultLanguage: parseLanguage(map.get(SETTING_KEYS.defaultLanguage)),
-      colorRotationEnabled: parseBoolean(
-        map.get(SETTING_KEYS.colorRotationEnabled),
-        defaultSiteSettings.colorRotationEnabled,
-      ),
+      colorRotationEnabled: parseBoolean(map.get(SETTING_KEYS.colorRotationEnabled), defaultSiteSettings.colorRotationEnabled),
       colorRotationIntervalSeconds: parseRotationInterval(map.get(SETTING_KEYS.colorRotationIntervalSeconds)),
+      controls: parseControls(map.get(SETTING_KEYS.siteControls)),
       content: parseContent(map.get(SETTING_KEYS.siteContent), defaultSiteContent),
       contentEn: parseContent(map.get(SETTING_KEYS.siteContentEn), englishSiteContent),
     };
@@ -118,112 +126,24 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
 export async function updateSiteSettings(settings: Partial<SiteSettings>) {
   const writes = [];
+  const upsert = (key: string, value: string) => prisma.siteSetting.upsert({
+    where: { key }, update: { value }, create: { key, value },
+  });
 
-  if (typeof settings.cvDownloadEnabled === "boolean") {
-    writes.push(
-      prisma.siteSetting.upsert({
-        where: { key: SETTING_KEYS.cvDownloadEnabled },
-        update: { value: String(settings.cvDownloadEnabled) },
-        create: {
-          key: SETTING_KEYS.cvDownloadEnabled,
-          value: String(settings.cvDownloadEnabled),
-        },
-      }),
-    );
-  }
-
-  if (typeof settings.whatsappButtonEnabled === "boolean") {
-    writes.push(
-      prisma.siteSetting.upsert({
-        where: { key: SETTING_KEYS.whatsappButtonEnabled },
-        update: { value: String(settings.whatsappButtonEnabled) },
-        create: {
-          key: SETTING_KEYS.whatsappButtonEnabled,
-          value: String(settings.whatsappButtonEnabled),
-        },
-      }),
-    );
-  }
-
-  if (settings.themeVariant && themeVariants.includes(settings.themeVariant)) {
-    writes.push(
-      prisma.siteSetting.upsert({
-        where: { key: SETTING_KEYS.themeVariant },
-        update: { value: settings.themeVariant },
-        create: { key: SETTING_KEYS.themeVariant, value: settings.themeVariant },
-      }),
-    );
-  }
-
-  if (settings.layoutVariant && layoutVariants.includes(settings.layoutVariant)) {
-    writes.push(
-      prisma.siteSetting.upsert({
-        where: { key: SETTING_KEYS.layoutVariant },
-        update: { value: settings.layoutVariant },
-        create: { key: SETTING_KEYS.layoutVariant, value: settings.layoutVariant },
-      }),
-    );
-  }
-
-  if (settings.defaultLanguage && languageVariants.includes(settings.defaultLanguage)) {
-    writes.push(
-      prisma.siteSetting.upsert({
-        where: { key: SETTING_KEYS.defaultLanguage },
-        update: { value: settings.defaultLanguage },
-        create: { key: SETTING_KEYS.defaultLanguage, value: settings.defaultLanguage },
-      }),
-    );
-  }
-
-  if (typeof settings.colorRotationEnabled === "boolean") {
-    writes.push(
-      prisma.siteSetting.upsert({
-        where: { key: SETTING_KEYS.colorRotationEnabled },
-        update: { value: String(settings.colorRotationEnabled) },
-        create: { key: SETTING_KEYS.colorRotationEnabled, value: String(settings.colorRotationEnabled) },
-      }),
-    );
-  }
-
+  if (typeof settings.cvDownloadEnabled === "boolean") writes.push(upsert(SETTING_KEYS.cvDownloadEnabled, String(settings.cvDownloadEnabled)));
+  if (typeof settings.whatsappButtonEnabled === "boolean") writes.push(upsert(SETTING_KEYS.whatsappButtonEnabled, String(settings.whatsappButtonEnabled)));
+  if (settings.themeVariant && themeVariants.includes(settings.themeVariant)) writes.push(upsert(SETTING_KEYS.themeVariant, settings.themeVariant));
+  if (settings.layoutVariant && layoutVariants.includes(settings.layoutVariant)) writes.push(upsert(SETTING_KEYS.layoutVariant, settings.layoutVariant));
+  if (settings.defaultLanguage && languageVariants.includes(settings.defaultLanguage)) writes.push(upsert(SETTING_KEYS.defaultLanguage, settings.defaultLanguage));
+  if (typeof settings.colorRotationEnabled === "boolean") writes.push(upsert(SETTING_KEYS.colorRotationEnabled, String(settings.colorRotationEnabled)));
   if (typeof settings.colorRotationIntervalSeconds === "number" && [10, 15].includes(settings.colorRotationIntervalSeconds)) {
-    writes.push(
-      prisma.siteSetting.upsert({
-        where: { key: SETTING_KEYS.colorRotationIntervalSeconds },
-        update: { value: String(settings.colorRotationIntervalSeconds) },
-        create: {
-          key: SETTING_KEYS.colorRotationIntervalSeconds,
-          value: String(settings.colorRotationIntervalSeconds),
-        },
-      }),
-    );
+    writes.push(upsert(SETTING_KEYS.colorRotationIntervalSeconds, String(settings.colorRotationIntervalSeconds)));
   }
+  if (settings.controls) writes.push(upsert(SETTING_KEYS.siteControls, JSON.stringify(normalizeSiteControlSettings(settings.controls))));
+  if (settings.content) writes.push(upsert(SETTING_KEYS.siteContent, JSON.stringify(normalizeSiteContent(settings.content, defaultSiteContent))));
+  if (settings.contentEn) writes.push(upsert(SETTING_KEYS.siteContentEn, JSON.stringify(normalizeSiteContent(settings.contentEn, englishSiteContent))));
 
-  if (settings.content) {
-    const normalized = normalizeSiteContent(settings.content, defaultSiteContent);
-    writes.push(
-      prisma.siteSetting.upsert({
-        where: { key: SETTING_KEYS.siteContent },
-        update: { value: JSON.stringify(normalized) },
-        create: { key: SETTING_KEYS.siteContent, value: JSON.stringify(normalized) },
-      }),
-    );
-  }
-
-  if (settings.contentEn) {
-    const normalized = normalizeSiteContent(settings.contentEn, englishSiteContent);
-    writes.push(
-      prisma.siteSetting.upsert({
-        where: { key: SETTING_KEYS.siteContentEn },
-        update: { value: JSON.stringify(normalized) },
-        create: { key: SETTING_KEYS.siteContentEn, value: JSON.stringify(normalized) },
-      }),
-    );
-  }
-
-  if (writes.length > 0) {
-    await prisma.$transaction(writes);
-  }
-
+  if (writes.length > 0) await prisma.$transaction(writes);
   return getSiteSettings();
 }
 
