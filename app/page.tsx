@@ -1,4 +1,4 @@
-import { AIChatWidget } from "@/components/AIChatWidget";
+import { ConfigurableAIChat } from "@/components/ConfigurableAIChat";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
@@ -234,7 +234,13 @@ export default async function Home() {
       <Footer content={portfolioContent} contentEn={portfolioContentEn} />
       {settings.whatsappButtonEnabled ? <WhatsAppButton content={portfolioContent} contentEn={portfolioContentEn} /> : null}
       <MobileBottomNav content={portfolioContent} />
-      {portfolioContent.sections.chatWidget ? <AIChatWidget greeting={portfolioContent.ai.chatGreeting} greetingEn={portfolioContentEn.ai.chatGreeting} /> : null}
+      {portfolioContent.sections.chatWidget ? (
+        <ConfigurableAIChat
+          greeting={portfolioContent.ai.chatGreeting}
+          greetingEn={portfolioContentEn.ai.chatGreeting}
+          defaultOpen={settings.controls.chatDefaultOpen}
+        />
+      ) : null}
     </SiteShell>
   );
 }
