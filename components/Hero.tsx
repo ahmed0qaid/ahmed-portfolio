@@ -26,7 +26,6 @@ export function Hero({ cvDownloadEnabled, content, contentEn, layoutVariant }: H
   const isCompact = layoutVariant === "compact";
   const isShowcase = layoutVariant === "showcase";
   const arDynamicTitles = [
-    "مهندس برمجيات باك إند وسحابي",
     "مهندس أنظمة باك إند",
     "مهندس أنظمة سحابية",
     "مهندس منصات برمجية",
