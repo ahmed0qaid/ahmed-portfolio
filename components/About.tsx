@@ -117,7 +117,10 @@ export function About({ content, contentEn, layoutVariant }: AboutProps) {
         </div>
 
         <div className="mx-auto w-full max-w-[760px]">
-          <div className="repo-card rounded-[2rem] p-5 leading-8 text-slate-300 sm:p-6 lg:p-7">
+          <div className="repo-card rounded-[2rem] border-white/[0.11] bg-[linear-gradient(145deg,rgba(255,255,255,0.055),rgba(255,255,255,0.025))] p-5 leading-8 text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.055),0_18px_45px_rgba(0,0,0,0.12)] backdrop-blur-[16px] sm:p-6 lg:p-7">
+            <div aria-hidden="true" className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full bg-cyanBrand/[0.06] blur-3xl" />
+            <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -left-10 h-36 w-36 rounded-full bg-violetBrand/[0.045] blur-3xl" />
+
             <div className="max-w-3xl">
               {about.paragraphs.map((paragraph, index) => (
                 <p key={`${paragraph}-${index}`} className="mt-4 first:mt-0 sm:mt-5">
@@ -132,7 +135,7 @@ export function About({ content, contentEn, layoutVariant }: AboutProps) {
                   {about.stats.map((stat, index) => (
                     <div
                       key={`${stat.value}-${stat.label}-${index}`}
-                      className="group relative flex min-h-[98px] flex-col items-center justify-center overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.028] px-4 py-4 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.025)] transition duration-300 hover:-translate-y-0.5 hover:border-cyanBrand/20 hover:bg-white/[0.045] sm:px-5"
+                      className="group relative flex min-h-[98px] flex-col items-center justify-center overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.035] px-4 py-4 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transition duration-300 hover:-translate-y-0.5 hover:border-cyanBrand/20 hover:bg-white/[0.05] sm:px-5"
                     >
                       <div aria-hidden="true" className="absolute inset-y-3 start-0 w-[2px] rounded-full bg-gradient-to-b from-cyanBrand to-violetBrand opacity-0 transition group-hover:opacity-100" />
 
