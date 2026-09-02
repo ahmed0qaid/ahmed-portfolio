@@ -81,13 +81,15 @@ const attendanceRepositories = [
 function FeaturedProjectCard({ project }: { project: (typeof featuredProjects)[number] }) {
   return (
     <article className="repo-card group flex h-full flex-col rounded-3xl border-cyanBrand/25 p-5 transition hover:-translate-y-1 hover:border-cyanBrand/55 sm:p-6">
-      <div className="flex items-start justify-between gap-3 sm:gap-4">
-        <h3 className="text-lg font-black leading-7 text-white sm:text-xl">
+      <div className="min-w-0">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <span className="repo-chip inline-flex max-w-full px-3 py-1 text-xs font-semibold text-cyan-100">
+            <LocalizedText ar={project.statusAr} en={project.statusEn} />
+          </span>
+        </div>
+        <h3 className="max-w-full break-words text-[1.05rem] font-black leading-[1.55] text-white sm:text-xl sm:leading-[1.5] lg:text-[1.28rem]">
           <LocalizedText ar={project.nameAr} en={project.nameEn} />
         </h3>
-        <span className="repo-chip shrink-0 px-3 py-1 text-xs font-semibold text-cyan-100">
-          <LocalizedText ar={project.statusAr} en={project.statusEn} />
-        </span>
       </div>
 
       <p className="mt-3 leading-7 text-slate-300/95 sm:mt-4 sm:leading-8">
@@ -150,7 +152,7 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
                 <LocalizedText ar="مشاريع وخبرة إضافية" en="Additional Engineering Work" />
               </p>
               <h3 className="mt-1 text-xl font-black text-white sm:text-2xl">
-                <LocalizedText ar="أعمال تطبيقية تدعم الصورة الهندسية" en="Applied work supporting the engineering profile" />
+                <LocalizedText ar="أعمال تطبيقية تدعم خبرتي" en="Additional applied engineering work" />
               </h3>
             </div>
 
@@ -162,13 +164,15 @@ export function Projects({ content, contentEn, layoutVariant }: ProjectsProps) {
 
                 return (
                   <article key={`${project.name}-${index}`} className="repo-card group flex h-full flex-col rounded-3xl p-5 transition hover:-translate-y-1 hover:border-violetBrand/50 sm:p-6">
-                    <div className="flex items-start justify-between gap-3 sm:gap-4">
-                      <h3 className="text-lg font-black leading-7 text-white sm:text-xl">
+                    <div className="min-w-0">
+                      <div className="mb-3 flex flex-wrap items-center gap-2">
+                        <span className="repo-chip inline-flex max-w-full px-3 py-1 text-xs font-semibold text-violet-100">
+                          <LocalizedText ar={project.status} en={projectEn?.status || project.status} />
+                        </span>
+                      </div>
+                      <h3 className="max-w-full break-words text-[1.05rem] font-black leading-[1.55] text-white sm:text-xl sm:leading-[1.5]">
                         <LocalizedText ar={project.name} en={projectEn?.name || project.name} />
                       </h3>
-                      <span className="repo-chip shrink-0 px-3 py-1 text-xs font-semibold text-violet-100">
-                        <LocalizedText ar={project.status} en={projectEn?.status || project.status} />
-                      </span>
                     </div>
 
                     <p className={`mt-3 text-slate-300/95 sm:mt-4 ${isAttendanceSuite ? "line-clamp-3 leading-7" : "leading-7 sm:leading-8"}`}>
