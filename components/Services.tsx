@@ -1,4 +1,5 @@
 import type { LayoutVariant, SiteContent } from "@/lib/site-content";
+import { getSiteSettings } from "@/lib/site-settings";
 import { LocalizedText } from "./LocalizedText";
 import { SectionHeader } from "./SectionHeader";
 import { serviceIconMap } from "./icon-map";
@@ -54,10 +55,15 @@ const engineeringCapabilities = [
   },
 ];
 
-export function Services({ content, contentEn, layoutVariant }: ServicesProps) {
+export async function Services({ content, contentEn, layoutVariant }: ServicesProps) {
   const isCompact = layoutVariant === "compact";
-  const isShowcase = layoutVariant === "showcase";
   const english = contentEn;
+  const { controls } = await getSiteSettings();
+  const columnsClass = controls.servicesColumns === 4
+    ? "xl:grid-cols-4"
+    : controls.servicesColumns === 2
+      ? "lg:grid-cols-2"
+      : "lg:grid-cols-3";
 
   return (
     <section id="services" className={isCompact ? "py-9 sm:py-10 lg:py-12" : "py-10 sm:py-12 lg:py-16"}>
@@ -68,7 +74,7 @@ export function Services({ content, contentEn, layoutVariant }: ServicesProps) {
           titleEn={english.servicesHeader.title}
           subtitleEn={english.servicesHeader.subtitle}
         />
-        <div className={`mt-7 grid gap-4 sm:mt-8 sm:gap-5 lg:mt-10 md:grid-cols-2 ${isShowcase ? "xl:grid-cols-3" : "lg:grid-cols-3"}`}>
+        <div className={`mt-7 grid gap-4 sm:mt-8 sm:gap-5 lg:mt-10 md:grid-cols-2 ${columnsClass}`}>
           {engineeringCapabilities.map((service, index) => {
             const Icon = serviceIconMap[service.icon] ?? serviceIconMap.server;
             return (
