@@ -67,12 +67,25 @@ function useTypewriter(terms: string[]) {
   return visibleText;
 }
 
-function TypewriterSpan({ terms, className }: { terms: string[]; className?: string }) {
+function TypewriterSpan({
+  terms,
+  direction,
+  className,
+}: {
+  terms: string[];
+  direction: "rtl" | "ltr";
+  className?: string;
+}) {
   const text = useTypewriter(terms);
-  const label = normalizeTerms(terms).join("، ");
+  const label = normalizeTerms(terms).join(direction === "rtl" ? "، " : ", ");
 
   return (
-    <span className={`typewriter-title ${className ?? ""}`} aria-label={label}>
+    <span
+      dir={direction}
+      className={`typewriter-title ${className ?? ""}`}
+      aria-label={label}
+      style={{ unicodeBidi: "isolate" }}
+    >
       <span className="typewriter-text">{text}</span>
       <span className="typewriter-caret" aria-hidden="true" />
     </span>
@@ -82,8 +95,8 @@ function TypewriterSpan({ terms, className }: { terms: string[]; className?: str
 export function TypewriterTitle({ arTerms, enTerms, className }: TypewriterTitleProps) {
   return (
     <>
-      <TypewriterSpan terms={arTerms} className={`lang-ar ${className ?? ""}`} />
-      <TypewriterSpan terms={enTerms} className={`lang-en ${className ?? ""}`} />
+      <TypewriterSpan terms={arTerms} direction="rtl" className={`lang-ar ${className ?? ""}`} />
+      <TypewriterSpan terms={enTerms} direction="ltr" className={`lang-en ${className ?? ""}`} />
     </>
   );
 }
