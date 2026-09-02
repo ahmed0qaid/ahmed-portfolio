@@ -1,14 +1,9 @@
-import { About } from "@/components/About";
 import { AIChatWidget } from "@/components/AIChatWidget";
-import { AISection } from "@/components/AISection";
-import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
-import { Projects } from "@/components/Projects";
-import { Services } from "@/components/Services";
-import { Skills } from "@/components/Skills";
+import { ManagedSections } from "@/components/ManagedSections";
 import { SiteShell } from "@/components/SiteShell";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { getSiteSettings } from "@/lib/site-settings";
@@ -229,12 +224,13 @@ export default async function Home() {
     >
       <Navbar cvDownloadEnabled={settings.cvDownloadEnabled} content={portfolioContent} contentEn={portfolioContentEn} defaultLanguage={settings.defaultLanguage} />
       <Hero cvDownloadEnabled={settings.cvDownloadEnabled} content={portfolioContent} contentEn={portfolioContentEn} layoutVariant={layoutVariant} />
-      {portfolioContent.sections.about ? <About content={portfolioContent} contentEn={portfolioContentEn} layoutVariant={layoutVariant} /> : null}
-      {portfolioContent.sections.services ? <Services content={portfolioContent} contentEn={portfolioContentEn} layoutVariant={layoutVariant} /> : null}
-      {portfolioContent.sections.skills ? <Skills content={portfolioContent} contentEn={portfolioContentEn} layoutVariant={layoutVariant} /> : null}
-      {portfolioContent.sections.projects ? <Projects content={portfolioContent} contentEn={portfolioContentEn} layoutVariant={layoutVariant} /> : null}
-      {portfolioContent.sections.assistant ? <AISection content={portfolioContent} contentEn={portfolioContentEn} layoutVariant={layoutVariant} /> : null}
-      {portfolioContent.sections.contact ? <Contact content={portfolioContent} contentEn={portfolioContentEn} layoutVariant={layoutVariant} whatsappButtonEnabled={settings.whatsappButtonEnabled} /> : null}
+      <ManagedSections
+        content={portfolioContent}
+        contentEn={portfolioContentEn}
+        layoutVariant={layoutVariant}
+        sectionOrder={settings.controls.sectionOrder}
+        whatsappButtonEnabled={settings.whatsappButtonEnabled}
+      />
       <Footer content={portfolioContent} contentEn={portfolioContentEn} />
       {settings.whatsappButtonEnabled ? <WhatsAppButton content={portfolioContent} contentEn={portfolioContentEn} /> : null}
       <MobileBottomNav content={portfolioContent} />
