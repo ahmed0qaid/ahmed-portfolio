@@ -10,9 +10,31 @@ export const featuredProjectKeys = [
 ] as const;
 export type FeaturedProjectKey = (typeof featuredProjectKeys)[number];
 
+export const capabilityKeys = [
+  "backend",
+  "cloud",
+  "databases",
+  "distributed",
+  "automation-ai",
+  "observability",
+] as const;
+export type CapabilityKey = (typeof capabilityKeys)[number];
+
+export const skillGroupKeys = [
+  "backend-systems",
+  "databases-data",
+  "cloud-infrastructure",
+  "distributed-reliability",
+  "ai-agent-infrastructure",
+  "web-mobile-product",
+] as const;
+export type SkillGroupKey = (typeof skillGroupKeys)[number];
+
 export type SiteControlSettings = {
   sectionOrder: SectionKey[];
   featuredProjectOrder: FeaturedProjectKey[];
+  capabilityOrder: CapabilityKey[];
+  skillGroupOrder: SkillGroupKey[];
   navbarSticky: boolean;
   showNavbarName: boolean;
   showNavbarSocials: boolean;
@@ -30,6 +52,15 @@ export const defaultSiteControlSettings: SiteControlSettings = {
     "mcp-policy-gateway",
     "agenttrace-otel",
     "reporadar",
+  ],
+  capabilityOrder: ["backend", "cloud", "databases", "distributed", "automation-ai", "observability"],
+  skillGroupOrder: [
+    "backend-systems",
+    "databases-data",
+    "cloud-infrastructure",
+    "distributed-reliability",
+    "ai-agent-infrastructure",
+    "web-mobile-product",
   ],
   navbarSticky: true,
   showNavbarName: true,
@@ -56,11 +87,9 @@ export function normalizeSiteControlSettings(value: unknown): SiteControlSetting
 
   return {
     sectionOrder: normalizeOrder(input.sectionOrder, sectionKeys, defaultSiteControlSettings.sectionOrder),
-    featuredProjectOrder: normalizeOrder(
-      input.featuredProjectOrder,
-      featuredProjectKeys,
-      defaultSiteControlSettings.featuredProjectOrder,
-    ),
+    featuredProjectOrder: normalizeOrder(input.featuredProjectOrder, featuredProjectKeys, defaultSiteControlSettings.featuredProjectOrder),
+    capabilityOrder: normalizeOrder(input.capabilityOrder, capabilityKeys, defaultSiteControlSettings.capabilityOrder),
+    skillGroupOrder: normalizeOrder(input.skillGroupOrder, skillGroupKeys, defaultSiteControlSettings.skillGroupOrder),
     navbarSticky: typeof input.navbarSticky === "boolean" ? input.navbarSticky : true,
     showNavbarName: typeof input.showNavbarName === "boolean" ? input.showNavbarName : true,
     showNavbarSocials: typeof input.showNavbarSocials === "boolean" ? input.showNavbarSocials : true,
