@@ -26,16 +26,16 @@ export function Hero({ cvDownloadEnabled, content, contentEn, layoutVariant }: H
   const isCompact = layoutVariant === "compact";
   const isShowcase = layoutVariant === "showcase";
   const arDynamicTitles = [
-    hero.highlightedTitle,
-    "Backend Engineer",
-    "Cloud Engineer",
-    "Platform Engineer",
-    "Distributed Systems Engineer",
-    "Automation Infrastructure Engineer",
-    "AI Infrastructure Engineer",
+    "مهندس برمجيات للأنظمة الخلفية والسحابية",
+    "مهندس أنظمة خلفية",
+    "مهندس أنظمة سحابية",
+    "مهندس منصات برمجية",
+    "مهندس أنظمة موزعة",
+    "مهندس بنية تحتية للأتمتة",
+    "مهندس بنية تحتية للذكاء الاصطناعي",
   ];
   const enDynamicTitles = [
-    english.hero.highlightedTitle,
+    "Backend & Cloud Software Engineer",
     "Backend Engineer",
     "Cloud Engineer",
     "Platform Engineer",
