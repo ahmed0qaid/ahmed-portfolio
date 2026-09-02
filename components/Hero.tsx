@@ -1,12 +1,13 @@
 import {
   ArrowLeft,
   BrainCircuit,
+  CloudCog,
   Database,
   Download,
+  Network,
   Server,
-  Smartphone,
+  ShieldCheck,
   Sparkles,
-  Workflow,
 } from "lucide-react";
 import type { LayoutVariant, SiteContent } from "@/lib/site-content";
 import { LocalizedText } from "./LocalizedText";
@@ -26,30 +27,26 @@ export function Hero({ cvDownloadEnabled, content, contentEn, layoutVariant }: H
   const isShowcase = layoutVariant === "showcase";
   const arDynamicTitles = [
     hero.highlightedTitle,
-    "مطور باك اند",
-    "مطور Full-Stack",
-    "مطور تطبيقات Flutter",
-    "مصمم قواعد بيانات",
-    "مطور حلول ذكاء اصطناعي",
-    "مطور أتمتة n8n",
+    "Backend Engineer",
+    "Cloud Engineer",
+    "Platform Engineer",
+    "Distributed Systems Engineer",
+    "Automation Infrastructure Engineer",
+    "AI Infrastructure Engineer",
   ];
   const enDynamicTitles = [
     english.hero.highlightedTitle,
-    "Backend Developer",
-    "Full-Stack Developer",
-    "Flutter Developer",
-    "Database Designer",
-    "AI Solutions Developer",
-    "n8n Automation Developer",
+    "Backend Engineer",
+    "Cloud Engineer",
+    "Platform Engineer",
+    "Distributed Systems Engineer",
+    "Automation Infrastructure Engineer",
+    "AI Infrastructure Engineer",
   ];
-  const profileSubtitleAr = profile.titleAr
-    .replace(/^مهندس برمجيات\s*[|،\-–—]*\s*/, "")
-    .trim() || profile.titleAr;
-  const profileSubtitleEn = (english.profile.titleEn || profile.titleEn)
-    .replace(/^Software Engineer\s*[|,\-–—]*\s*/i, "")
-    .trim() || (english.profile.titleEn || profile.titleEn);
+  const profileSubtitleAr = profile.titleAr;
+  const profileSubtitleEn = english.profile.titleEn || profile.titleEn;
 
-  const focusIcons = [Server, Smartphone, Database, BrainCircuit, Workflow];
+  const focusIcons = [Server, CloudCog, Database, ShieldCheck, Network];
 
   return (
     <section id="home" className={`relative overflow-hidden ${isCompact ? "py-10 sm:py-12 lg:py-14" : "py-12 sm:py-14 lg:py-20"}`}>
@@ -120,7 +117,7 @@ export function Hero({ cvDownloadEnabled, content, contentEn, layoutVariant }: H
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyanBrand opacity-35" />
                     <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyanBrand" />
                   </span>
-                  <span className="text-[0.58rem] font-bold uppercase tracking-[0.12em] text-slate-500">Focus</span>
+                  <span className="text-[0.58rem] font-bold uppercase tracking-[0.12em] text-slate-500">Engineering</span>
                 </div>
               </div>
 
@@ -151,7 +148,7 @@ export function Hero({ cvDownloadEnabled, content, contentEn, layoutVariant }: H
               </div>
 
               <div className="relative mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3 text-[0.62rem] font-semibold text-slate-500">
-                <span><LocalizedText ar="تعلم مستمر · بناء عملي" en="Continuous learning · Practical building" /></span>
+                <span><LocalizedText ar="موثوق · قابل للنشر · قابل للمراقبة · قابل للاستعادة" en="Reliable · Deployable · Observable · Recoverable" /></span>
                 <span className="h-1.5 w-1.5 rounded-full bg-violetBrand shadow-[0_0_12px_var(--accent-2)]" />
               </div>
             </div>
