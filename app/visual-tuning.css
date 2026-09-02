@@ -1,0 +1,127 @@
+/* Visual tuning for the navbar and floating AI assistant.
+   These surfaces inherit the active site theme instead of using isolated fixed colors. */
+
+.site-root header.sticky.top-0 {
+  background:
+    linear-gradient(
+      110deg,
+      color-mix(in srgb, var(--site-bg) 91%, var(--accent) 9%),
+      color-mix(in srgb, var(--site-bg) 94%, var(--accent-2) 6%)
+    ) !important;
+  border-bottom-color: color-mix(in srgb, var(--accent) 18%, rgba(255, 255, 255, 0.08)) !important;
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--accent) 9%, transparent),
+    0 12px 38px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(22px) saturate(135%);
+}
+
+.site-root header.sticky.top-0::after {
+  content: "";
+  position: absolute;
+  inset-inline: 12%;
+  bottom: -1px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 48%, transparent),
+    color-mix(in srgb, var(--accent-2) 38%, transparent),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+.site-root header.sticky.top-0 nav > div.rounded-full {
+  background: color-mix(in srgb, var(--site-panel) 70%, transparent) !important;
+  border-color: color-mix(in srgb, var(--accent) 13%, rgba(255, 255, 255, 0.08)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.site-root .chat-widget:not(button) {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--accent) 13%, transparent), transparent 34%),
+    radial-gradient(circle at 88% 8%, color-mix(in srgb, var(--accent-2) 11%, transparent), transparent 30%),
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--site-panel) 94%, transparent),
+      color-mix(in srgb, var(--site-bg) 97%, transparent)
+    ) !important;
+  border-color: color-mix(in srgb, var(--accent) 24%, rgba(255, 255, 255, 0.08)) !important;
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.42),
+    0 0 0 1px color-mix(in srgb, var(--accent-2) 7%, transparent),
+    0 0 42px color-mix(in srgb, var(--accent) 8%, transparent);
+  backdrop-filter: blur(24px) saturate(130%);
+}
+
+.site-root .chat-widget:not(button)::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset-inline: 12%;
+  top: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 72%, transparent),
+    color-mix(in srgb, var(--accent-2) 62%, transparent),
+    transparent
+  );
+}
+
+.site-root .chat-widget:not(button) > div:first-child {
+  position: relative;
+  background:
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--accent) 9%, transparent),
+      color-mix(in srgb, var(--accent-2) 6%, transparent)
+    ) !important;
+  border-bottom-color: color-mix(in srgb, var(--accent) 16%, rgba(255, 255, 255, 0.08)) !important;
+}
+
+.site-root .chat-widget:not(button) > div:first-child > div > div:first-child {
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent) !important;
+  box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.site-root .chat-widget .bg-cyanBrand {
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    color-mix(in srgb, var(--accent) 72%, var(--accent-2) 28%)
+  ) !important;
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.site-root .chat-widget input {
+  background: color-mix(in srgb, var(--site-panel) 72%, transparent) !important;
+  border-color: rgba(255, 255, 255, 0.09) !important;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.site-root .chat-widget input:focus {
+  background: color-mix(in srgb, var(--site-panel) 84%, transparent) !important;
+  border-color: color-mix(in srgb, var(--accent) 58%, transparent) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.site-root button.chat-widget {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important;
+  border: 1px solid color-mix(in srgb, white 18%, transparent);
+  color: #061018 !important;
+  box-shadow:
+    0 16px 42px rgba(0, 0, 0, 0.3),
+    0 0 30px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.site-root button.chat-widget:hover {
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.34),
+    0 0 38px color-mix(in srgb, var(--accent) 24%, transparent);
+}
